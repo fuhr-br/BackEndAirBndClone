@@ -15,7 +15,6 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
 
-    //mudar a Date
     private LocalDate dataEntrada;
     private LocalDate dataSaida;
 
