@@ -5,13 +5,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Clientes")
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa {
+
 	
 	
 	public Cliente() {
 
 	}
-
 	
 	
 

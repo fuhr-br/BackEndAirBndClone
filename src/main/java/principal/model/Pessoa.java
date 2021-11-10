@@ -8,12 +8,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.Digits;
 
 @Entity
-public class Pessoa {
+public abstract class Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
+	
 	@Column(nullable = false, name = "Nome")
 	private String nome;
 	@Column(nullable = false, name = "Idade")
@@ -25,6 +25,8 @@ public class Pessoa {
 	
 	@Column(nullable = false, name = "Email")
 	private String email;
+	@Column(nullable = false, name = "Senha")
+	private String senha;
 
 	public Pessoa() {
 	}
