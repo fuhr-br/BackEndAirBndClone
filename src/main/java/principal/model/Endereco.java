@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 
 @Entity
 @Table(name = "Enderecos")
@@ -15,15 +16,16 @@ public class Endereco   {
     private Long id;
     
     @Column(nullable = false, name = "Cep")
+    @Digits(fraction = 0, integer = 9)
     private String cep;
     
-    @Column(nullable = false, name = "Rua")
+    @Column(nullable = false, name = "Rua", length = 150)
     private String rua;
     
-    @Column(nullable = false, name = "Numero")
+    @Column(nullable = false, name = "Numero", length = 10)
     private int numero;
     
-    @Column(nullable = false, name = "Complemento")
+    @Column(nullable = false, name = "Complemento", length = 20)
     private String complemento;
 
     public Endereco() {

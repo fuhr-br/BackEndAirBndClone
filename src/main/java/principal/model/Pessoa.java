@@ -1,11 +1,15 @@
 package principal.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Digits;
+
+import principal.validacoes.ValidaEmail;
 
 @Entity
 public abstract class Pessoa {
@@ -18,12 +22,12 @@ public abstract class Pessoa {
 	private String nome;
 	@Column(nullable = false, name = "Idade")
 	private Integer idade;
-
+	
 	@Column(nullable = false, name = "Telefone")
 	@Digits(fraction = 0, integer = 11)
 	private String telephone;
 	
-	@Column(nullable = false, name = "Email")
+	@Column(nullable = false, name = "Email", unique = true)
 	private String email;
 	@Column(nullable = false, name = "Senha")
 	private String senha;
@@ -42,10 +46,14 @@ public abstract class Pessoa {
 	public String getEmail() {
 		return email;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
+	 public void setEmail(String email) {
+		 
+			this.email = Objects.requireNonNull(email, "e-mail não deve ser nulo");
+	        if (!ValidaEmail.isNotEmpty.and(ValidaEmail.isEmail).test(email)) {
+	            throw new IllegalArgumentException("Formato de Email não é válido!");
+	        }
+	    }
 
 	public String getSenha() {
 		return senha;

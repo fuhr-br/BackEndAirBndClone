@@ -1,4 +1,4 @@
-package principal.services;
+package principal.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,7 @@ import principal.repository.ClienteRepository;
 import principal.model.Cliente;
 
 @Service
-public class ServiceCliente {
+public class ClienteService {
 	
 	@Autowired
 	private ClienteRepository repository;
@@ -23,14 +23,14 @@ public class ServiceCliente {
 	public Cliente atualizar(Cliente cliente) {
 		return repository.save(cliente);
 	}
-
-	public Cliente Login(String email, String senha) {
-		return repository.findByEmail(email, senha);
-	}
 	
 	@Transactional(rollbackFor = Exception.class)
 	public void deletar(Cliente cliente) {
 		 repository.deleteById(cliente.getId());
+	}
+	
+	public Cliente buscarPorEmail(String email) {
+		return repository.findByEmail(email);
 	}
 
 }
