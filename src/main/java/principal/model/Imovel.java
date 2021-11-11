@@ -41,7 +41,7 @@ public class Imovel {
 	private Endereco endereco;
 
 	@ManyToOne
-	@JoinColumn(name = "Locatario_ID")
+	@JoinColumn(name = "Locatario_ID", nullable = false)
 	private Locatario locatario;
 
 	public Imovel() {

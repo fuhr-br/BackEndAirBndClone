@@ -6,4 +6,6 @@ import principal.model.Locatario;
 
 public interface LocatarioRepository extends CrudRepository<Locatario, Long> {
 
+	Locatario findByEmail(String email);
+
 }

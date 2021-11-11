@@ -94,16 +94,8 @@ public class ClienteController {
 
 		return new ResponseEntity<Mensagem>(new Mensagem("Erro 404 Not Found -  "
 				+ "Provavel motivo: "
-				+ " Cliente não encontrado!"),HttpStatus.NOT_FOUND);
+				+ " Cliente não encontrado ou Email Inválido!"),HttpStatus.NOT_FOUND);
 
 	}
 
-}
-//esta classe poderá ser colocada em pacote separado e utilizada como padrão de resposta
-final class Mensagem{
-    public String msg;
-
-    public Mensagem(String msg) {
-        this.msg = msg;
-    }
 }

@@ -13,9 +13,23 @@ public class Locatario extends Pessoa {
 
 	@OneToMany
 	@JoinColumn(name = "Imoveis_ID")
-	private List<Imovel> Imovel;
+	private List<Imovel> imoveis;
 
 	public Locatario() {
+		
 	}
+	
+	public Locatario(String nome, Integer idade, Integer telefone, String email, String senha) {
+		super(nome, idade, telefone, email, senha);
+	}
+
+	public List<Imovel> getImovel() {
+		return imoveis;
+	}
+
+	public void AddImovel(Imovel imovel) {
+		this.imoveis.add(imovel);
+	}
+	
 
 }

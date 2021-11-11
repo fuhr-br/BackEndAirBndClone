@@ -26,10 +26,19 @@ public class ImovelController {
 	
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<Imovel> salvar(@RequestBody Imovel imovel) {
+	public ResponseEntity<Mensagem> salvar(@RequestBody Imovel imovel) {
+		
+		if(imovel.getEndereco() == null) {
+			return new ResponseEntity<Mensagem>(new Mensagem("Error 400 Bad Request - Motivo : "
+					+ "Campo Endereço Vazio!"),HttpStatus.BAD_REQUEST);
+			
+		}else if(imovel.getLocatario() == null) {
+			return new ResponseEntity<Mensagem>(new Mensagem("Error 400 Bad Request - Motivo : "
+					+ "Campo Locatário Está Vazio!"),HttpStatus.BAD_REQUEST);
+		}
 		serviceEndereco.salvar(imovel.getEndereco());
 		this.service.salvar(imovel);
-		return new ResponseEntity<Imovel>(HttpStatus.CREATED);
+		return new ResponseEntity<Mensagem>(HttpStatus.CREATED);
 
 	}
 

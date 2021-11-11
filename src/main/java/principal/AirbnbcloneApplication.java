@@ -13,9 +13,11 @@ import principal.model.Cliente;
 import principal.model.Endereco;
 import principal.model.Imovel;
 import principal.model.ImovelTipo;
+import principal.model.Locatario;
 import principal.service.ClienteService;
 import principal.service.EnderecoService;
 import principal.service.ImovelService;
+import principal.service.LocatarioService;
 
 @SpringBootApplication
 public class AirbnbcloneApplication {
@@ -27,13 +29,17 @@ public class AirbnbcloneApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(ClienteService repository, ImovelService imovelService, EnderecoService enderecoService) {
+	public CommandLineRunner demo(ClienteService repository, 
+									ImovelService imovelService,
+									EnderecoService enderecoService,
+									LocatarioService locatarioService
+						) {
 		return (args) -> {
-			// savr
+			// salvar cliente
 			repository.salvar(new Cliente("Jack", 34, 333333, "andersonfuhr@yahoo.com", "@a1234"));
 			repository.salvar(new Cliente("joão", 34, 333333, "diego@yahoo.com", "@a1234"));
 
-	      // buscar todos
+	      // buscar todos clientes
 	      log.info("Buscar todos os clientes:");
 	      log.info("-------------------------------");
 	      Iterable<Cliente> clientes = repository.buscarTodos();
@@ -42,7 +48,7 @@ public class AirbnbcloneApplication {
 	      }
 	      log.info("");
 
-			// procurar por ID
+			// procurar cliente  por ID
 			Cliente cliente = repository.buscarPorEmail("andersonfuhr@yahoo.com");
 			log.info("Buscar cliente por email");
 			log.info("--------------------------------");
@@ -54,16 +60,19 @@ public class AirbnbcloneApplication {
 			pessoa = repository.buscarPorId(2l);
 
 			log.info(pessoa.toString() + "\n");
+			//Cadastra um locatario
+			Locatario locatario = new Locatario("Jack", 34, 333333, "andersonfuhr@yahoo.com", "@a1234");
+			locatarioService.salvar(locatario);
 			
-			//Cadastra um imovel
+			//Cadastra um imovel, mas primeiro é necessário um locatario 
 			 imovelService.salvar(new Imovel(false, 1, 1, true, 2,
-						"Casa de praia", ImovelTipo.CASA,null, null));
+						"Casa de praia", ImovelTipo.CASA,null, locatario));
 			 
 			Endereco endereco =  new Endereco("91150000", "Camelia", 255, "ap 201");
 			enderecoService.salvar(endereco);
 			
 			imovelService.salvar(new Imovel(false, 1, 1, true, 2,
-						"Casa de praia", ImovelTipo.CASA,endereco, null));
+						"Casa de praia", ImovelTipo.CASA,endereco, locatario));
 
 	     
 		};
