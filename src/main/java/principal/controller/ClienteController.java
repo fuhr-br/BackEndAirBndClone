@@ -73,6 +73,7 @@ public class ClienteController {
 
 		try {
 			Cliente clienteParaAtualizar = this.service.buscarPorEmail(cliente.getEmail());
+			
 			if (clienteParaAtualizar != null ) {
 
 				clienteParaAtualizar.setEmail(cliente.getEmail());
