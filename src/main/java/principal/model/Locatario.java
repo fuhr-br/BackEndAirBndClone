@@ -3,7 +3,6 @@ package principal.model;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -11,8 +10,7 @@ import javax.persistence.Table;
 @Table(name = "Locatarios")
 public class Locatario extends Pessoa {
 
-	@OneToMany
-	@JoinColumn(name = "Imoveis_ID")
+	@OneToMany()	
 	private List<Imovel> imoveis;
 
 	public Locatario() {

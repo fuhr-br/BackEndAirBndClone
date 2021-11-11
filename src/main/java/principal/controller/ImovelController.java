@@ -22,7 +22,7 @@ public class ImovelController {
 	private ImovelService service;
 	@Autowired
 	private EnderecoService serviceEndereco;
-	
+
 	
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, produces = "application/json")
@@ -38,6 +38,7 @@ public class ImovelController {
 		}
 		serviceEndereco.salvar(imovel.getEndereco());
 		this.service.salvar(imovel);
+		
 		return new ResponseEntity<Mensagem>(HttpStatus.CREATED);
 
 	}
