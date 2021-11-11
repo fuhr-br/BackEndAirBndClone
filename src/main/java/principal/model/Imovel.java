@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Imovel {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "Ar_Condicionado", nullable = false)
 	private Boolean arCondicionado;
@@ -61,6 +61,8 @@ public class Imovel {
 		this.locatario = locatario;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "Imovel [id=" + id + ", arCondicionado=" + arCondicionado + ", camaSolteiro=" + camaSolteiro

@@ -3,47 +3,50 @@ package principal.model;
 import java.util.Objects;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Digits;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import javax.persistence.MappedSuperclass;
 
 import principal.validacoes.ValidaEmail;
 
-@Entity
+@MappedSuperclass
 public abstract class Pessoa {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	protected Long id;
+
 	@Column(nullable = false, name = "Nome")
-	private String nome;
+	protected String nome;
 	@Column(nullable = false, name = "Idade")
-	private Integer idade;
-	
+	protected Integer idade;
+
 	@Column(nullable = false, name = "Telefone")
 	@Digits(fraction = 0, integer = 11)
-	private Integer telefone;
-	
+	protected Integer telefone;
+
 	@Column(nullable = false, name = "Email", unique = true)
-	private String email;
+	protected String email;
 	@Column(nullable = false, name = "Senha")
-	private String senha;
+	@JsonProperty(access = Access.WRITE_ONLY)
+	protected String senha;
 
 	public Pessoa() {
 	}
-	
-	public Pessoa(String nome, Integer idade, Integer telefone, String email,
-			String senha) {
+
+	public Pessoa(String nome, Integer idade, Integer telefone, String email, String senha) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
 		this.telefone = telefone;
 		this.email = email;
 		this.senha = senha;
-		this.id =null;
+		this.id = null;
 	}
 
 	public Integer getTelephone() {
@@ -57,14 +60,14 @@ public abstract class Pessoa {
 	public String getEmail() {
 		return email;
 	}
-	
-	 public void setEmail(String email) {
-		 
-			this.email = Objects.requireNonNull(email, "e-mail não deve ser nulo");
-	        if (!ValidaEmail.isNotEmpty.and(ValidaEmail.isEmail).test(email)) {
-	            throw new IllegalArgumentException("Formato de Email não é válido!");
-	        }
-	    }
+
+	public void setEmail(String email) {
+
+		this.email = Objects.requireNonNull(email, "e-mail não deve ser nulo");
+		if (!ValidaEmail.isNotEmpty.and(ValidaEmail.isEmail).test(email)) {
+			throw new IllegalArgumentException("Formato de Email não é válido!");
+		}
+	}
 
 	public String getSenha() {
 		return senha;
@@ -91,7 +94,5 @@ public abstract class Pessoa {
 		return "Pessoa [id=" + id + ", nome=" + nome + ", idade=" + idade + ", telefone=" + telefone + ", email="
 				+ email + ", senha=" + senha + "]";
 	}
-	
-	
 
 }

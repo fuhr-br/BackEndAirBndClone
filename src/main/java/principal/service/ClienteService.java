@@ -2,6 +2,8 @@ package principal.service;
 
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,11 +27,6 @@ public class ClienteService {
 	public Cliente salvar(Cliente cliente) {
 		return repository.save(cliente);
 	}
-
-	@Transactional(rollbackFor = Exception.class)
-	public Cliente atualizar(Cliente cliente) {
-		return repository.save(cliente);
-	}
 	
 	@Transactional(rollbackFor = Exception.class)
 	public void deletar(Cliente cliente) {
@@ -39,5 +36,10 @@ public class ClienteService {
 	public Cliente buscarPorEmail(String email) {
 		return repository.findByEmail(email);
 	}
+	
+	public Optional<Cliente> buscarPorId(Long id) {
+		return repository.findById(id);
+	}
+	
 
 }

@@ -6,17 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
+
 
 @Entity
 @Table(name = "Enderecos")
 public class Endereco   {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(nullable = false, name = "Cep")
-    @Digits(fraction = 0, integer = 9)
     private String cep;
     
     @Column(nullable = false, name = "Rua", length = 150)

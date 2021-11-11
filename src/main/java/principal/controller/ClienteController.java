@@ -1,5 +1,7 @@
 package principal.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +32,7 @@ public class ClienteController {
 
 	}
 
-	@RequestMapping(value = "/buscar/email", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Cliente> buscarPorEmail(@PathVariable String email) {
 
 		if (!ValidaEmail.isNotEmpty.and(ValidaEmail.isEmail).test(email)) {
@@ -39,13 +41,13 @@ public class ClienteController {
 
 		Cliente cliente = this.service.buscarPorEmail(email);
 		if (cliente == null) {
-			return new ResponseEntity<Cliente>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Iterable<Cliente>> getAll() {
+	@RequestMapping(value = "/lista", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Iterable<Cliente>> buscarTodos() {
 
 		Iterable<Cliente> clientes = this.service.buscarTodos();
 
@@ -54,6 +56,41 @@ public class ClienteController {
 
 		}
 		return new ResponseEntity<Iterable<Cliente>>(clientes, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Optional<Cliente>> buscarPorId(@PathVariable Long id) {
+
+		Optional<Cliente> cliente = Optional.empty();
+		cliente = this.service.buscarPorId(id);
+
+		if (cliente.isEmpty()) {
+			return new ResponseEntity<Optional<Cliente>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Optional<Cliente>>(cliente, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/atualiza", method = RequestMethod.PUT, produces = "application/json")
+	public ResponseEntity<Cliente> atualizar(@PathVariable Cliente cliente) {
+
+		try {
+			Cliente clienteProcura = this.service.buscarPorEmail(cliente.getEmail());
+			if (clienteProcura != null && clienteProcura.getSenha().equals(cliente.getSenha())) {
+
+				cliente.setEmail(clienteProcura.getEmail());
+				cliente.setSenha(clienteProcura.getSenha());
+				cliente.setTelephone(clienteProcura.getTelephone());
+				this.service.salvar(cliente);
+
+				return new ResponseEntity<Cliente>(clienteProcura, HttpStatus.OK);
+			}
+
+		} catch (Exception e) {
+			new IllegalArgumentException("Impossível fazer atualização do objeto passado! ", e);
+		}
+
+		return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
+
 	}
 
 }

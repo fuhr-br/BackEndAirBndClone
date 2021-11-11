@@ -9,13 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+//import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Reserva {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
-
+	
+	//Verificar se o Json irá retornar o esperado
+//	 @JsonFormat(
+//		      shape = JsonFormat.Shape.STRING,
+//		      pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDate dataEntrada;
+//	 @JsonFormat(
+//		      shape = JsonFormat.Shape.STRING,
+//		      pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDate dataSaida;
 
     @ManyToOne

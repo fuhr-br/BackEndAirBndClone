@@ -6,6 +6,6 @@ import principal.model.Cliente;
 
 public interface ClienteRepository extends CrudRepository<Cliente, Long> {
 
-	Cliente findByEmail(String Email);
+	Cliente findByEmail(String email);
 
 }
