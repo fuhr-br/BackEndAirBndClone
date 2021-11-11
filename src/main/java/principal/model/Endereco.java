@@ -7,43 +7,50 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "Enderecos")
-public class Endereco  {
+public class Endereco {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String cep;
+	@Column(nullable = false, name = "Cep")
+	private String cep;
 
-    private String rua;
-    
+	@Column(nullable = false, name = "Rua", length = 150)
+	private String rua;
 
-    private int numero;
+	@Column(nullable = false, name = "Numero", length = 10)
+	private int numero;
 
-    private String complemento;
+	@Column(nullable = false, name = "Complemento", length = 20)
+	private String complemento;
 
-    public Endereco() {
-    }
+	public Endereco() {
+	}
 
-    public Endereco(String cep, String rua, int numero, String complemento) {
-        this.cep = cep;
-        this.rua = rua;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.id= null;
-    }
-    
+	public Endereco(String cep, String rua, int numero, String complemento) {
+		this.cep = cep;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+	}
 
-    public String getRua() {
+	public String getRua() {
 		return rua;
 	}
 
 	public void setRua(String rua) {
 		this.rua = rua;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 
 	public String getComplemento() {
@@ -62,12 +69,9 @@ public class Endereco  {
 		return cep;
 	}
 
-	public int getNumero() {
-		return numero;
-	}
-
 	@Override
-    public String toString() {
-        return "Endereco{" + "id=" + id + ", cep=" + cep + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + '}';
-    }
+	public String toString() {
+		return "Endereco{" + "id=" + id + ", cep=" + cep + ", rua=" + rua + ", numero=" + numero + ", complemento="
+				+ complemento + '}';
+	}
 }

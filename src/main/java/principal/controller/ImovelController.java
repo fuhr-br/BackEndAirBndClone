@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import principal.model.Imovel;
+import principal.service.EnderecoService;
 import principal.service.ImovelService;
 
 @Controller
@@ -19,10 +20,14 @@ public class ImovelController {
 
 	@Autowired
 	private ImovelService service;
+	@Autowired
+	private EnderecoService serviceEndereco;
+	
+	
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Imovel> salvar(@RequestBody Imovel imovel) {
-
+		serviceEndereco.salvar(imovel.getEndereco());
 		this.service.salvar(imovel);
 		return new ResponseEntity<Imovel>(HttpStatus.CREATED);
 

@@ -61,6 +61,7 @@ public class AirbnbcloneApplication {
 			 
 			Endereco endereco =  new Endereco("91150000", "Camelia", 255, "ap 201");
 			enderecoService.salvar(endereco);
+			
 			imovelService.salvar(new Imovel(false, 1, 1, true, 2,
 						"Casa de praia", ImovelTipo.CASA,endereco, null));
 
