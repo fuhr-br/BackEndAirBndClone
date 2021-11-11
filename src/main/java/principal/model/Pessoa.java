@@ -43,6 +43,7 @@ public abstract class Pessoa {
 		this.telefone = telefone;
 		this.email = email;
 		this.senha = senha;
+		this.id =null;
 	}
 
 	public Integer getTelephone() {

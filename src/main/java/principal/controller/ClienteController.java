@@ -50,7 +50,7 @@ public class ClienteController {
 		Iterable<Cliente> clientes = this.service.buscarTodos();
 
 		if (clientes == null) {
-			return new ResponseEntity<Iterable<Cliente>>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Iterable<Cliente>>(HttpStatus.NOT_FOUND);
 
 		}
 		return new ResponseEntity<Iterable<Cliente>>(clientes, HttpStatus.OK);
