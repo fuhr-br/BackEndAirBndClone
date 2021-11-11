@@ -10,21 +10,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Enderecos")
-public class Endereco   {
+public class Endereco  {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(nullable = false, name = "Cep")
+
     private String cep;
-    
-    @Column(nullable = false, name = "Rua", length = 150)
+
     private String rua;
     
-    @Column(nullable = false, name = "Numero", length = 10)
+
     private int numero;
-    
-    @Column(nullable = false, name = "Complemento", length = 20)
+
     private String complemento;
 
     public Endereco() {
@@ -35,9 +34,39 @@ public class Endereco   {
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;
+        this.id= null;
     }
+    
 
-    @Override
+    public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	@Override
     public String toString() {
         return "Endereco{" + "id=" + id + ", cep=" + cep + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + '}';
     }

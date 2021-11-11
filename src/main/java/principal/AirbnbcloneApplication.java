@@ -13,8 +13,8 @@ import principal.model.Cliente;
 import principal.model.Endereco;
 import principal.model.Imovel;
 import principal.model.ImovelTipo;
-import principal.model.Locatario;
 import principal.service.ClienteService;
+import principal.service.EnderecoService;
 import principal.service.ImovelService;
 
 @SpringBootApplication
@@ -27,7 +27,7 @@ public class AirbnbcloneApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(ClienteService repository, ImovelService imovelService) {
+	public CommandLineRunner demo(ClienteService repository, ImovelService imovelService, EnderecoService enderecoService) {
 		return (args) -> {
 			// savr
 			repository.salvar(new Cliente("Jack", 34, 333333, "andersonfuhr@yahoo.com", "@a1234"));
@@ -58,6 +58,11 @@ public class AirbnbcloneApplication {
 			//Cadastra um imovel
 			 imovelService.salvar(new Imovel(false, 1, 1, true, 2,
 						"Casa de praia", ImovelTipo.CASA,null, null));
+			 
+			Endereco endereco =  new Endereco("91150000", "Camelia", 255, "ap 201");
+			enderecoService.salvar(endereco);
+			imovelService.salvar(new Imovel(false, 1, 1, true, 2,
+						"Casa de praia", ImovelTipo.CASA,endereco, null));
 
 	     
 		};

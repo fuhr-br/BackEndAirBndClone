@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Imovel {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column(name = "Ar_Condicionado", nullable = false)
 	private Boolean arCondicionado;
@@ -37,7 +37,7 @@ public class Imovel {
 	private ImovelTipo tipo;
 
 	@OneToOne
-	@JoinColumn(name = "Endereco_ID")
+	@JoinColumn()
 	private Endereco endereco;
 
 	@ManyToOne
