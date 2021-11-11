@@ -1,6 +1,9 @@
 package principal.controller;
 
 import java.util.Optional;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,6 +72,7 @@ public class ClienteController {
 	}
 
 	@RequestMapping(value = "/atualizar", method = RequestMethod.PUT, produces = "application/json")
+	@Transactional
 	public ResponseEntity<Mensagem> atualizar(@RequestBody Cliente cliente) {
 
 		try {
@@ -78,7 +82,7 @@ public class ClienteController {
 
 				clienteParaAtualizar.setEmail(cliente.getEmail());
 				clienteParaAtualizar.setSenha(cliente.getSenha());
-				clienteParaAtualizar.setTelephone(cliente.getTelephone());
+				clienteParaAtualizar.setTelefone(cliente.getTelefone());
 				this.service.salvar(clienteParaAtualizar);
 
 				return new ResponseEntity<Mensagem>(HttpStatus.OK);

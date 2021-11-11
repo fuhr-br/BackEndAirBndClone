@@ -28,19 +28,19 @@ public class ImovelController {
 
 	}
 
-	@RequestMapping(value = "/lista", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Iterable<Imovel>> buscarTodos() {
 
 		Iterable<Imovel> imovel = this.service.buscarTodos();
 
 		if (imovel == null) {
-			return new ResponseEntity<Iterable<Imovel>>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Iterable<Imovel>>( HttpStatus.NOT_FOUND);
 
 		}
 		return new ResponseEntity<Iterable<Imovel>>(imovel, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/remove/{imovelId}", method = RequestMethod.DELETE, produces = "application/json")
+	@RequestMapping(value = "/remover/{imovelId}", method = RequestMethod.DELETE, produces = "application/json")
 	@Transactional
 	public ResponseEntity<Void> deletar(@PathVariable Long imovelId) {
 
@@ -55,7 +55,7 @@ public class ImovelController {
 
 	}
 
-	@RequestMapping(value = "/atualiza", method = RequestMethod.PUT, produces = "application/json")
+	@RequestMapping(value = "/atualizar", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<Imovel> atualizar(@RequestBody Imovel imovel) {
 
 		try {

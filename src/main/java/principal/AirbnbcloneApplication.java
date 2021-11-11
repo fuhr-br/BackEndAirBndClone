@@ -10,7 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import principal.model.Cliente;
+import principal.model.Endereco;
+import principal.model.Imovel;
+import principal.model.ImovelTipo;
+import principal.model.Locatario;
 import principal.service.ClienteService;
+import principal.service.ImovelService;
 
 @SpringBootApplication
 public class AirbnbcloneApplication {
@@ -22,7 +27,7 @@ public class AirbnbcloneApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(ClienteService repository) {
+	public CommandLineRunner demo(ClienteService repository, ImovelService imovelService) {
 		return (args) -> {
 			// savr
 			repository.salvar(new Cliente("Jack", 34, 333333, "andersonfuhr@yahoo.com", "@a1234"));
@@ -49,6 +54,10 @@ public class AirbnbcloneApplication {
 			pessoa = repository.buscarPorId(2l);
 
 			log.info(pessoa.toString() + "\n");
+			
+			//Cadastra um imovel
+			 imovelService.salvar(new Imovel(false, 1, 1, true, 2,
+						"Casa de praia", ImovelTipo.CASA,null, null));
 
 	     
 		};

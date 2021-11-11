@@ -32,7 +32,7 @@ public class Imovel {
 	@Column(name = "Descricao", nullable = false)
 	private String descricao;
 
-	@Column(name = "Tipo", nullable = false)
+	@Column(name = "Tipo")
 	@Enumerated(EnumType.STRING)
 	private ImovelTipo tipo;
 

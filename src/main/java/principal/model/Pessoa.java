@@ -49,11 +49,11 @@ public abstract class Pessoa {
 		this.id = null;
 	}
 
-	public Integer getTelephone() {
+	public Integer getTelefone() {
 		return telefone;
 	}
 
-	public void setTelephone(Integer telefone) {
+	public void setTelefone(Integer telefone) {
 		this.telefone = telefone;
 	}
 
