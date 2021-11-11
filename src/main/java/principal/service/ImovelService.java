@@ -21,10 +21,13 @@ public class ImovelService {
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public Imovel salvar(Imovel cliente) {
-		return repository.save(cliente);
+	public Imovel salvar(Imovel imovel) {
+		return repository.save(imovel);
 	}
-	
+	@Transactional(rollbackFor = Exception.class)
+	public void deletar(Long id) {
+	 repository.deleteById(id);
+	}
 	
 	public Optional<Imovel> buscarPorId(Long id) {
 		return repository.findById(id);

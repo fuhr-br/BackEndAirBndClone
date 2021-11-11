@@ -63,6 +63,78 @@ public class Imovel {
 
 	
 	
+	public Boolean getArCondicionado() {
+		return arCondicionado;
+	}
+
+	public void setArCondicionado(Boolean arCondicionado) {
+		this.arCondicionado = arCondicionado;
+	}
+
+	public Integer getCamaSolteiro() {
+		return camaSolteiro;
+	}
+
+	public void setCamaSolteiro(Integer camaSolteiro) {
+		this.camaSolteiro = camaSolteiro;
+	}
+
+	public Integer getCamaCasal() {
+		return camaCasal;
+	}
+
+	public void setCamaCasal(Integer camaCasal) {
+		this.camaCasal = camaCasal;
+	}
+
+	public Boolean getPiscina() {
+		return piscina;
+	}
+
+	public void setPiscina(Boolean piscina) {
+		this.piscina = piscina;
+	}
+
+	public Integer getQuartos() {
+		return quartos;
+	}
+
+	public void setQuartos(Integer quartos) {
+		this.quartos = quartos;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public ImovelTipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(ImovelTipo tipo) {
+		this.tipo = tipo;
+	}
+
+	public Locatario getLocatario() {
+		return locatario;
+	}
+
+	public void setLocatario(Locatario locatario) {
+		this.locatario = locatario;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
 	@Override
 	public String toString() {
 		return "Imovel [id=" + id + ", arCondicionado=" + arCondicionado + ", camaSolteiro=" + camaSolteiro

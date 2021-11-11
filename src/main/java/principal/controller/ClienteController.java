@@ -46,7 +46,7 @@ public class ClienteController {
 		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/lista", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Iterable<Cliente>> buscarTodos() {
 
 		Iterable<Cliente> clientes = this.service.buscarTodos();
@@ -70,19 +70,19 @@ public class ClienteController {
 		return new ResponseEntity<Optional<Cliente>>(cliente, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/atualiza", method = RequestMethod.PUT, produces = "application/json")
-	public ResponseEntity<Cliente> atualizar(@PathVariable Cliente cliente) {
+	@RequestMapping(value = "/atualizar", method = RequestMethod.PUT, produces = "application/json")
+	public ResponseEntity<Cliente> atualizar(@RequestBody Cliente cliente) {
 
 		try {
-			Cliente clienteProcura = this.service.buscarPorEmail(cliente.getEmail());
-			if (clienteProcura != null && clienteProcura.getSenha().equals(cliente.getSenha())) {
+			Cliente clienteParaAtualizar = this.service.buscarPorEmail(cliente.getEmail());
+			if (clienteParaAtualizar != null ) {
 
-				cliente.setEmail(clienteProcura.getEmail());
-				cliente.setSenha(clienteProcura.getSenha());
-				cliente.setTelephone(clienteProcura.getTelephone());
-				this.service.salvar(cliente);
+				clienteParaAtualizar.setEmail(cliente.getEmail());
+				clienteParaAtualizar.setSenha(cliente.getSenha());
+				clienteParaAtualizar.setTelephone(cliente.getTelephone());
+				this.service.salvar(clienteParaAtualizar);
 
-				return new ResponseEntity<Cliente>(clienteProcura, HttpStatus.OK);
+				return new ResponseEntity<Cliente>(clienteParaAtualizar, HttpStatus.OK);
 			}
 
 		} catch (Exception e) {
