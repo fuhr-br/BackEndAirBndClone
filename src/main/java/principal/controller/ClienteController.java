@@ -1,11 +1,9 @@
 package principal.controller;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,7 +69,7 @@ public class ClienteController {
 	}
 
 	@RequestMapping(value = "/atualizar", method = RequestMethod.PUT, produces = "application/json")
-	public ResponseEntity<Cliente> atualizar(@RequestBody Cliente cliente) {
+	public ResponseEntity<Mensagem> atualizar(@RequestBody Cliente cliente) {
 
 		try {
 			Cliente clienteParaAtualizar = this.service.buscarPorEmail(cliente.getEmail());
@@ -82,15 +80,25 @@ public class ClienteController {
 				clienteParaAtualizar.setTelephone(cliente.getTelephone());
 				this.service.salvar(clienteParaAtualizar);
 
-				return new ResponseEntity<Cliente>(clienteParaAtualizar, HttpStatus.OK);
+				return new ResponseEntity<Mensagem>(HttpStatus.OK);
 			}
 
 		} catch (Exception e) {
 			new IllegalArgumentException("Impossível fazer atualização do objeto passado! ", e);
 		}
 
-		return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Mensagem>(new Mensagem("Erro 404 Not Found -  "
+				+ "Provavel motivo: "
+				+ " Cliente não encontrado!"),HttpStatus.NOT_FOUND);
 
 	}
 
+}
+//esta classe poderá ser colocada em pacote separado e utilizada como padrão de resposta
+final class Mensagem{
+    public String msg;
+
+    public Mensagem(String msg) {
+        this.msg = msg;
+    }
 }
