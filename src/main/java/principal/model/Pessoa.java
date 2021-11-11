@@ -25,7 +25,7 @@ public abstract class Pessoa {
 	
 	@Column(nullable = false, name = "Telefone")
 	@Digits(fraction = 0, integer = 11)
-	private String telephone;
+	private Integer telefone;
 	
 	@Column(nullable = false, name = "Email", unique = true)
 	private String email;
@@ -34,13 +34,23 @@ public abstract class Pessoa {
 
 	public Pessoa() {
 	}
-
-	public String getTelephone() {
-		return telephone;
+	
+	public Pessoa(String nome, Integer idade, Integer telefone, String email,
+			String senha) {
+		super();
+		this.nome = nome;
+		this.idade = idade;
+		this.telefone = telefone;
+		this.email = email;
+		this.senha = senha;
 	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public Integer getTelephone() {
+		return telefone;
+	}
+
+	public void setTelephone(Integer telefone) {
+		this.telefone = telefone;
 	}
 
 	public String getEmail() {
@@ -73,6 +83,12 @@ public abstract class Pessoa {
 
 	public Integer getIdade() {
 		return idade;
+	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", idade=" + idade + ", telefone=" + telefone + ", email="
+				+ email + ", senha=" + senha + "]";
 	}
 	
 	
