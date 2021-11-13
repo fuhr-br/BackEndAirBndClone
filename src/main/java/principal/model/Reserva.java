@@ -60,6 +60,10 @@ public class Reserva {
 	public Cliente getCliente() {
 		return cliente;
 	}
+
+	public Long getId() {
+		return id;
+	}
     
     
 
