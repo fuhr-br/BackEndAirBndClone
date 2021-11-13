@@ -7,17 +7,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Locatarios")
-public class Locatario extends Pessoa {
+@Table(name = "Usuario")
+public class Usuario extends Pessoa {
 
 	@OneToMany()	
 	private List<Imovel> imoveis;
 
-	public Locatario() {
+	public List<Imovel> getImoveis() {
+		return imoveis;
+	}
+
+	public void setImoveis(List<Imovel> imoveis) {
+		this.imoveis = imoveis;
+	}
+
+	public Usuario() {
 		
 	}
 	
-	public Locatario(String nome, Integer idade, Integer telefone, String email, String senha) {
+	public Usuario(String nome, Integer idade, Integer telefone, String email, String senha) {
 		super(nome, idade, telefone, email, senha);
 	}
 

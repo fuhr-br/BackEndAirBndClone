@@ -92,7 +92,7 @@ public class ClienteController {
 			new IllegalArgumentException("Impossível fazer atualização do objeto passado! ", e);
 		}
 
-		return new ResponseEntity<Mensagem>(new Mensagem("Erro 404 Not Found -  "
+		return new ResponseEntity<Mensagem>(new Mensagem("Status: 404 Not Found -  "
 				+ "Provavel motivo: "
 				+ " Cliente não encontrado ou Email Inválido!"),HttpStatus.NOT_FOUND);
 

@@ -5,36 +5,36 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import principal.model.Locatario;
-import principal.repository.LocatarioRepository;
+import principal.model.Usuario;
+import principal.repository.UsuarioRepository;
 
 @Service
-public class LocatarioService {
+public class UsuarioService {
 		
 	@Autowired
-	private LocatarioRepository repository;
+	private UsuarioRepository repository;
 	
 	
 	@Transactional(rollbackFor = Exception.class)
-	public Iterable<Locatario> buscarTodos() {
+	public Iterable<Usuario> buscarTodos() {
 		return repository.findAll();
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public Locatario salvar(Locatario locatario) {
-		return repository.save(locatario);
+	public Usuario salvar(Usuario usuario) {
+		return repository.save(usuario);
 	}
 	
 	@Transactional(rollbackFor = Exception.class)
-	public void deletar(Locatario locatario) {
-		 repository.deleteById(locatario.getId());
+	public void deletar(Usuario usuario) {
+		 repository.deleteById(usuario.getId());
 	}
 	
-	public Locatario buscarPorEmail(String email) {
+	public Usuario buscarPorEmail(String email) {
 		return repository.findByEmail(email);
 	}
 	
-	public Optional<Locatario> buscarPorId(Long id) {
+	public Optional<Usuario> buscarPorId(Long id) {
 		return repository.findById(id);
 	}
 	

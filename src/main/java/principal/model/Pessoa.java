@@ -6,11 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Digits;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Email;
 
 import principal.validacoes.ValidaEmail;
 
@@ -27,10 +27,10 @@ public abstract class Pessoa {
 	protected Integer idade;
 
 	@Column(nullable = false, name = "Telefone")
-	@Digits(fraction = 0, integer = 11)
 	protected Integer telefone;
 
 	@Column(nullable = false, name = "Email", unique = true)
+	@Email
 	protected String email;
 	@Column(nullable = false, name = "Senha")
 	@JsonProperty(access = Access.WRITE_ONLY)

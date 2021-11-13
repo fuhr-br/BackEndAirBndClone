@@ -57,16 +57,16 @@ public class ImovelController {
 
 	@RequestMapping(value = "/remover/{imovelId}", method = RequestMethod.DELETE, produces = "application/json")
 	@Transactional
-	public ResponseEntity<Void> deletar(@PathVariable Long imovelId) {
+	public ResponseEntity<Mensagem> deletar(@PathVariable Long imovelId) {
 
 		Optional<Imovel> imovel = Optional.empty();
 		imovel = this.service.buscarPorId(imovelId);
 
 		if (imovel.isEmpty()) {
-			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Mensagem>(new Mensagem("Status: 404 Not Found - Imovel inválido "),HttpStatus.NOT_FOUND);
 		}
 		this.service.deletar(imovelId);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Mensagem>(new Mensagem("Status: NO_CONTENT - Imóvel Deletado com sucesso! "), HttpStatus.NO_CONTENT);
 
 	}
 
@@ -83,7 +83,6 @@ public class ImovelController {
 				imovelParaAtualizar.get().setCamaCasal(imovel.getCamaCasal());
 				imovelParaAtualizar.get().setCamaSolteiro(imovel.getCamaSolteiro());
 				imovelParaAtualizar.get().setDescricao(imovel.getDescricao());
-				imovelParaAtualizar.get().setPiscina(imovel.getPiscina());
 				imovelParaAtualizar.get().setQuartos(imovel.getQuartos());
 
 				this.service.salvar(imovelParaAtualizar.get());

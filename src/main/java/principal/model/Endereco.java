@@ -17,6 +17,15 @@ public class Endereco {
 
 	@Column(nullable = false, name = "Cep")
 	private String cep;
+	
+	@Column(nullable = false, name = "Cidade")
+	private String cidade;
+	
+	@Column(nullable = false, name = "Bairro")
+	private String bairro;
+	
+	@Column(nullable = false, name = "Uf")
+	private String uf;
 
 	@Column(nullable = false, name = "Rua", length = 150)
 	private String rua;
@@ -30,11 +39,27 @@ public class Endereco {
 	public Endereco() {
 	}
 
-	public Endereco(String cep, String rua, int numero, String complemento) {
+	public Endereco(String cep, String cidade, String bairro, String uf, String rua, int numero, String complemento) {
+		super();
 		this.cep = cep;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.uf = uf;
 		this.rua = rua;
 		this.numero = numero;
 		this.complemento = complemento;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getUf() {
+		return uf;
 	}
 
 	public String getRua() {
@@ -71,7 +96,9 @@ public class Endereco {
 
 	@Override
 	public String toString() {
-		return "Endereco{" + "id=" + id + ", cep=" + cep + ", rua=" + rua + ", numero=" + numero + ", complemento="
-				+ complemento + '}';
+		return "Endereco [id=" + id + ", cep=" + cep + ", cidade=" + cidade + ", bairro=" + bairro + ", uf=" + uf
+				+ ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + "]";
 	}
+
+	
 }

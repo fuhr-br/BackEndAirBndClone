@@ -13,11 +13,11 @@ import principal.model.Cliente;
 import principal.model.Endereco;
 import principal.model.Imovel;
 import principal.model.ImovelTipo;
-import principal.model.Locatario;
+import principal.model.Usuario;
 import principal.service.ClienteService;
 import principal.service.EnderecoService;
 import principal.service.ImovelService;
-import principal.service.LocatarioService;
+import principal.service.UsuarioService;
 
 @SpringBootApplication
 public class AirbnbcloneApplication {
@@ -32,7 +32,7 @@ public class AirbnbcloneApplication {
 	public CommandLineRunner demo(ClienteService repository, 
 									ImovelService imovelService,
 									EnderecoService enderecoService,
-									LocatarioService locatarioService
+									UsuarioService usuarioService
 						) {
 		return (args) -> {
 			// salvar cliente
@@ -61,18 +61,18 @@ public class AirbnbcloneApplication {
 
 			log.info(pessoa.toString() + "\n");
 			//Cadastra um locatario
-			Locatario locatario = new Locatario("Jack", 34, 333333, "andersonfuhr@yahoo.com", "@a1234");
-			locatarioService.salvar(locatario);
+			Usuario usuario = new Usuario("Jack", 34, 333333, "andersonfuhr@yahoo", "@a1234");
+			usuarioService.salvar(usuario);
 			
 			//Cadastra um imovel, mas primeiro é necessário um locatario 
-			 imovelService.salvar(new Imovel(false, 1, 1, true, 2,
-						"Casa de praia", ImovelTipo.CASA,null, locatario));
+			 imovelService.salvar(new Imovel(false, 1, 1, 2,
+						"Casa de praia", ImovelTipo.CASA,null, usuario));
 			 
-			Endereco endereco =  new Endereco("91150000", "Camelia", 255, "ap 201");
+			Endereco endereco =  new Endereco("91150000", "Camelia","Cristal","RS","Camelias", 255, "ap201"	);
 			enderecoService.salvar(endereco);
 			
-			imovelService.salvar(new Imovel(false, 1, 1, true, 2,
-						"Casa de praia", ImovelTipo.CASA,endereco, locatario));
+			imovelService.salvar(new Imovel(false, 1, 1,2,
+						"Casa de praia", ImovelTipo.CASA,endereco, usuario));
 
 	     
 		};
