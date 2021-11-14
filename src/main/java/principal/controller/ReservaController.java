@@ -35,6 +35,12 @@ public class ReservaController {
 	public ResponseEntity<Iterable<Reserva>> buscarTodos() {
 
 		Iterable<Reserva> reservas = this.service.buscarTodos();
+		
+		/*
+		 * 
+        Query query = em.createQuery("SELECT reserva FROM Reserva reserva ORDER BY dataEntrada", Reserva.class);             
+        List<Reserva> Allreservas = (List<Reserva>)query.getResultList();
+		 * */
 
 		if (reservas == null) {
 			return new ResponseEntity<Iterable<Reserva>>(HttpStatus.NOT_FOUND);
@@ -80,6 +86,23 @@ public class ReservaController {
 				+ " Locatario não encontrado!"),HttpStatus.NOT_FOUND);
 
 	}
+	
+	/*public 
+        
+        Query query = em.createQuery("SELECT r FROM Reserva r "
+                + "WHERE ((dataEntrada <= :dataEntrada AND dataSaida >= :dataEntrada) "
+                + "OR (dataEntrada <= :dataSaida AND dataSaida >= :dataSaida) "
+                + "OR (dataEntrada > :dataEntrada AND dataSaida <:dataSaida))"
+                + "AND cabana_id = :idCabana", Reserva.class);
+        query.setParameter("dataEntrada", dataEntrada);
+        query.setParameter("dataSaida", dataSaida);
+        query.setParameter("idCabana", idCabana);
+
+        List<Reserva> reservas = (List<Reserva>)query.getResultList();
+
+        return reservas;
+    }
+*/
 	
 	
 	
