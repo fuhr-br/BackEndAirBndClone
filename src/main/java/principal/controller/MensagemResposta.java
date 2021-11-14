@@ -1,4 +1,4 @@
-package principal;
+package principal.controller;
 
 public class MensagemResposta {
 	private String mensagem;

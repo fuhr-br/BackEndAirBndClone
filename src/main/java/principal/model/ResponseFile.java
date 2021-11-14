@@ -1,4 +1,4 @@
-package principal;
+package principal.model;
 
 public class ResponseFile {
 	private String nome;

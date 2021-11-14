@@ -1,4 +1,4 @@
-package principal;
+package principal.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import principal.model.ArquivoDB;
+import principal.model.ResponseFile;
+import principal.service.ArquivioService;
 
 @Controller
 @RequestMapping("/")
