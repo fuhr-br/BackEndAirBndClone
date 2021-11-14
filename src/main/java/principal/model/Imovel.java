@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import principal.ArquivoDB;
+
 @Entity
 @Table(name = "Imoveis")
 public class Imovel {
@@ -37,6 +39,10 @@ public class Imovel {
 	@OneToOne
 	@JoinColumn()
 	private Endereco endereco;
+	
+	@OneToOne
+	@JoinColumn()
+	private ArquivoDB imagem;
 
 	@ManyToOne()
 	@JoinColumn(name = "Locatario_ID", nullable = false)
@@ -56,6 +62,20 @@ public class Imovel {
 		this.tipo = tipo;
 		this.endereco = endereco;
 		this.usuario = usuario;
+	}
+	
+	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos,
+			String descricao, ImovelTipo tipo, Endereco endereco, Usuario usuario, ArquivoDB imagem) {
+		super();
+		this.arCondicionado = arCondicionado;
+		this.camaSolteiro = camaSolteiro;
+		this.camaCasal = camaCasal;
+		this.quartos = quartos;
+		this.descricao = descricao;
+		this.tipo = tipo;
+		this.endereco = endereco;
+		this.usuario = usuario;
+		this.imagem = imagem;
 	}
 
 	

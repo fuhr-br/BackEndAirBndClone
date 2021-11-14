@@ -25,36 +25,42 @@ public class ArquivoController {
 
 	@PostMapping("/upload")
 	public ResponseEntity<MensagemResposta> uploadArquivo(@RequestParam("file") MultipartFile arquivo) {
-		String message = "";
+		String mensagem = "";
 		try {
 			service.store(arquivo);
 
-			message = "Uploaded the file successfully: " + arquivo.getOriginalFilename();
-			return ResponseEntity.status(HttpStatus.OK).body(new MensagemResposta(message));
+			mensagem = "Uploaded do arquivo com sucesso: " + arquivo.getOriginalFilename();
+			return ResponseEntity.status(HttpStatus.OK).body(new MensagemResposta(mensagem));
 		} catch (Exception e) {
-			message = "Could not upload the file: " + arquivo.getOriginalFilename() + "!";
-			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MensagemResposta(message));
+			mensagem = "Não foi possível fazer o upload do arquivo: " + arquivo.getOriginalFilename() + "!";
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MensagemResposta(mensagem));
 		}
 	}
 
-	@GetMapping("/files")
+	@GetMapping("/imagens")
 	public ResponseEntity<List<ResponseFile>> getListaArquivos() {
+
 		List<ResponseFile> files = service.getTodosOsArquivos().map(dbArquivo -> {
-			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/files/")
+			String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagens/")
 					.path(dbArquivo.getId()).toUriString();
 
-			return new ResponseFile(dbArquivo.getNome(), fileDownloadUri, dbArquivo.getTipo(), dbArquivo.getData().length);
+			return new ResponseFile(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
+					dbArquivo.getData().length);
 		}).collect(Collectors.toList());
 
 		return ResponseEntity.status(HttpStatus.OK).body(files);
 	}
 
-	@GetMapping("/files/{id}")
+	@GetMapping("/imagens/{id}")
 	public ResponseEntity<byte[]> getArquivo(@PathVariable String id) {
 		ArquivoDB arquivoDB = service.getArquivo(id);
-
+		
+		if (arquivoDB.getNome() == null) {
+			return 	new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
+		}
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + arquivoDB.getNome() + "\"")
 				.body(arquivoDB.getData());
 	}
+
 }
