@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import principal.model.ArquivoDB;
-import principal.model.ResponseFile;
+import principal.model.ModeloArquivoDeResposta;
 import principal.service.ArquivioService;
 
 @Controller
@@ -42,13 +42,13 @@ public class ArquivoController {
 	}
 
 	@GetMapping("/imagens")
-	public ResponseEntity<List<ResponseFile>> getListaArquivos() {
+	public ResponseEntity<List<ModeloArquivoDeResposta>> getListaArquivos() {
 
-		List<ResponseFile> files = service.getTodosOsArquivos().map(dbArquivo -> {
+		List<ModeloArquivoDeResposta> files = service.getTodosOsArquivos().map(dbArquivo -> {
 			String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/")
 					.path(dbArquivo.getId()).toUriString();
 
-			return new ResponseFile(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
+			return new ModeloArquivoDeResposta(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
 					dbArquivo.getData().length);
 		}).collect(Collectors.toList());
 

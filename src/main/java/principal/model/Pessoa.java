@@ -89,10 +89,5 @@ public abstract class Pessoa {
 		return idade;
 	}
 
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", idade=" + idade + ", telefone=" + telefone + ", email="
-				+ email + ", senha=" + senha + "]";
-	}
 
 }

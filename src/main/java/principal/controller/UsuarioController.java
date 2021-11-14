@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import principal.model.Usuario;
 import principal.service.UsuarioService;
@@ -25,7 +26,9 @@ public class UsuarioController {
 	public ResponseEntity<Mensagem> salvar(@RequestBody Usuario usuario) {
 
 		this.service.salvar(usuario);
-		return new ResponseEntity<Mensagem>(new Mensagem("Status: 200OK - Usuário: "+usuario.getNome()+" cadastrado com succeso!"), HttpStatus.CREATED);
+		return new ResponseEntity<Mensagem>(
+				new Mensagem("Status: 200OK - Usuário: " + usuario.getNome() + " cadastrado com succeso!"),
+				HttpStatus.CREATED);
 
 	}
 
@@ -39,9 +42,21 @@ public class UsuarioController {
 		Usuario usuario = this.service.buscarPorEmail(email);
 		if (usuario == null) {
 			return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
-			
+
 		}
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/login", params = { "email",
+			"senha" }, method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Mensagem> login(@RequestParam("email") String email, @RequestParam("senha") String senha) {
+
+		Optional<Usuario> usuario = this.service.login(email, senha);
+		if (usuario.isEmpty()) {
+			return new ResponseEntity<Mensagem>(new Mensagem("Login não autorizado!"), HttpStatus.BAD_REQUEST);
+
+		}
+		return new ResponseEntity<Mensagem>(new Mensagem("Login autorizado!"), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json")
@@ -74,8 +89,8 @@ public class UsuarioController {
 
 		try {
 			Usuario locatarioParaAtualizar = this.service.buscarPorEmail(usuario.getEmail());
-			
-			if (locatarioParaAtualizar != null ) {
+
+			if (locatarioParaAtualizar != null) {
 
 				locatarioParaAtualizar.setEmail(usuario.getEmail());
 				locatarioParaAtualizar.setSenha(usuario.getSenha());
@@ -89,13 +104,10 @@ public class UsuarioController {
 			new IllegalArgumentException("Impossível fazer atualização do objeto passado! ", e);
 		}
 
-		return new ResponseEntity<Mensagem>(new Mensagem("Erro 404 Not Found -  "
-				+ "Provavel motivo: "
-				+ " Locatario não encontrado!"),HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Mensagem>(
+				new Mensagem("Erro 404 Not Found -  " + "Provavel motivo: " + " Locatario não encontrado!"),
+				HttpStatus.NOT_FOUND);
 
 	}
 
 }
-
-	
-

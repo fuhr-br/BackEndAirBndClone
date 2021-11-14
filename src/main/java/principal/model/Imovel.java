@@ -30,6 +30,9 @@ public class Imovel {
 	private Integer quartos;
 	@Column(name = "Descricao", nullable = false)
 	private String descricao;
+	@Column(name = "ImagemURL")
+	private String imagemURL;
+	
 
 	@Column(name = "Tipo")
 	@Enumerated(EnumType.STRING)
@@ -58,6 +61,20 @@ public class Imovel {
 		this.endereco = endereco;
 		this.usuario = usuario;
 
+	}
+
+	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
+			String imagemURL, ImovelTipo tipo, Endereco endereco, Usuario usuario) {
+		super();
+		this.arCondicionado = arCondicionado;
+		this.camaSolteiro = camaSolteiro;
+		this.camaCasal = camaCasal;
+		this.quartos = quartos;
+		this.descricao = descricao;
+		this.imagemURL = imagemURL;
+		this.tipo = tipo;
+		this.endereco = endereco;
+		this.usuario = usuario;
 	}
 
 	public Boolean getArCondicionado() {
@@ -96,6 +113,18 @@ public class Imovel {
 		return descricao;
 	}
 
+	public String getImagemURL() {
+		return imagemURL;
+	}
+
+	public void setImagemURL(String imagemURL) {
+		this.imagemURL = imagemURL;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
@@ -124,11 +153,5 @@ public class Imovel {
 		return endereco;
 	}
 
-	@Override
-	public String toString() {
-		return "Imovel [id=" + id + ", arCondicionado=" + arCondicionado + ", camaSolteiro=" + camaSolteiro
-				+ ", camaCasal=" + camaCasal + ", quartos=" + quartos + ", descricao=" + descricao + ", tipo=" + tipo
-				+ ", endereco=" + endereco + ", locatario=" + usuario + "]";
-	}
 
 }

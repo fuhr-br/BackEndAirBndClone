@@ -63,6 +63,8 @@ public class AirbnbcloneApplication {
 			//Cadastra um locatario
 			Usuario usuario = new Usuario("Jack", 34, 333333, "andersonfuhr@yahoo", "@a1234");
 			usuarioService.salvar(usuario);
+		     usuario = new Usuario("Jack", 34, 333333, "diego@yahoo", "1234");
+			usuarioService.salvar(usuario);
 			
 			//Cadastra um imovel, mas primeiro é necessário um locatario 
 			 imovelService.salvar(new Imovel(false, 1, 1, 2,

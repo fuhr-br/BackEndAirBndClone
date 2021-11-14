@@ -10,10 +10,10 @@ import principal.controller.Mensagem;
 
 
 @ControllerAdvice
-public class FileUploadExceptionAdvice extends ResponseEntityExceptionHandler {
+public class ArquivoUploadException extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(MaxUploadSizeExceededException.class)
   public ResponseEntity<Mensagem> handleMaxSizeException(MaxUploadSizeExceededException exc) {
-    return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new Mensagem("File too large!"));
+    return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new Mensagem("Arquivo é muito grande: máx permitido 3mb!"));
   }
 }

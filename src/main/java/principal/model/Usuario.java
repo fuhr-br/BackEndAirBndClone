@@ -10,8 +10,16 @@ import javax.persistence.Table;
 @Table(name = "Usuario")
 public class Usuario extends Pessoa {
 
-	@OneToMany()	
+	@OneToMany()
 	private List<Imovel> imoveis;
+
+	public Usuario() {
+
+	}
+
+	public Usuario(String nome, Integer idade, Integer telefone, String email, String senha) {
+		super(nome, idade, telefone, email, senha);
+	}
 
 	public List<Imovel> getImoveis() {
 		return imoveis;
@@ -21,21 +29,9 @@ public class Usuario extends Pessoa {
 		this.imoveis = imoveis;
 	}
 
-	public Usuario() {
-		
-	}
-	
-	public Usuario(String nome, Integer idade, Integer telefone, String email, String senha) {
-		super(nome, idade, telefone, email, senha);
-	}
-
-	public List<Imovel> getImovel() {
-		return imoveis;
-	}
-
 	public void AddImovel(Imovel imovel) {
 		this.imoveis.add(imovel);
 	}
-	
+
 
 }

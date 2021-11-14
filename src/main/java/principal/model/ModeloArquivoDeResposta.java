@@ -1,12 +1,12 @@
 package principal.model;
 
-public class ResponseFile {
+public class ModeloArquivoDeResposta {
 	private String nome;
 	private String url;
 	private String tipo;
 	private long tam;
 
-	public ResponseFile(String nome, String url, String tipo, long tam) {
+	public ModeloArquivoDeResposta(String nome, String url, String tipo, long tam) {
 		this.nome = nome;
 		this.url = url;
 		this.tipo = tipo;
