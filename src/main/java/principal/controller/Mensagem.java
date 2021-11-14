@@ -1,10 +1,18 @@
 package principal.controller;
 
+public class Mensagem {
+	private String mensagem;
 
-class Mensagem{
-public String msg;
+	public Mensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
 
-public Mensagem(String msg) {
-    this.msg = msg;
-}
+	public String getMessage() {
+		return mensagem;
+	}
+
+	public void setMessage(String mensagem) {
+		this.mensagem = mensagem;
+	}
+
 }

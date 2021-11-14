@@ -28,16 +28,16 @@ public class ArquivoController {
 	private ArquivioService service;
 
 	@PostMapping("/upload")
-	public ResponseEntity<MensagemResposta> uploadArquivo(@RequestParam("file") MultipartFile arquivo) {
+	public ResponseEntity<Mensagem> uploadArquivo(@RequestParam("file") MultipartFile arquivo) {
 		String mensagem = "";
 		try {
 			service.armazenar(arquivo);
 
 			mensagem = "Uploaded do arquivo com sucesso: " + arquivo.getOriginalFilename();
-			return ResponseEntity.status(HttpStatus.OK).body(new MensagemResposta(mensagem));
+			return ResponseEntity.status(HttpStatus.OK).body(new Mensagem(mensagem));
 		} catch (Exception e) {
 			mensagem = "Não foi possível fazer o upload do arquivo: " + arquivo.getOriginalFilename() + "!";
-			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MensagemResposta(mensagem));
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new Mensagem(mensagem));
 		}
 	}
 
