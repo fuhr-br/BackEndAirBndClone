@@ -1,5 +1,7 @@
 package principal.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -40,9 +43,9 @@ public class Imovel {
 	@JoinColumn()
 	private Endereco endereco;
 	
-	@OneToOne
+	@OneToMany
 	@JoinColumn()
-	private ArquivoDB imagem;
+	private List<ArquivoDB> imagem;
 
 	@ManyToOne()
 	@JoinColumn(name = "Locatario_ID", nullable = false)
@@ -62,10 +65,11 @@ public class Imovel {
 		this.tipo = tipo;
 		this.endereco = endereco;
 		this.usuario = usuario;
+		this.imagem=null;
 	}
 	
-	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos,
-			String descricao, ImovelTipo tipo, Endereco endereco, Usuario usuario, ArquivoDB imagem) {
+	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
+			ImovelTipo tipo, Endereco endereco, List<ArquivoDB> imagem, Usuario usuario) {
 		super();
 		this.arCondicionado = arCondicionado;
 		this.camaSolteiro = camaSolteiro;
@@ -74,12 +78,26 @@ public class Imovel {
 		this.descricao = descricao;
 		this.tipo = tipo;
 		this.endereco = endereco;
-		this.usuario = usuario;
 		this.imagem = imagem;
+		this.usuario = usuario;
+	}
+	
+	
+
+	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos,
+			String descricao, ImovelTipo tipo, Endereco endereco, ArquivoDB imagem, Usuario usuario) {
+		super();
+		this.arCondicionado = arCondicionado;
+		this.camaSolteiro = camaSolteiro;
+		this.camaCasal = camaCasal;
+		this.quartos = quartos;
+		this.descricao = descricao;
+		this.tipo = tipo;
+		this.endereco = endereco;
+		this.imagem.add(imagem);
+		this.usuario = usuario;
 	}
 
-	
-	
 	public Boolean getArCondicionado() {
 		return arCondicionado;
 	}

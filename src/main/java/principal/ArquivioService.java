@@ -14,9 +14,9 @@ public class ArquivioService {
 	@Autowired
 	private ArquivoDBRepository arquivoDBRepository;
 
-	public ArquivoDB store(MultipartFile file) throws IOException {
-		String nomeDoArquivo = StringUtils.cleanPath(file.getOriginalFilename());
-		ArquivoDB arquivoDB = new ArquivoDB(nomeDoArquivo, file.getContentType(), file.getBytes());
+	public ArquivoDB armazenar(MultipartFile arquivo) throws IOException {
+		String nomeDoArquivo = StringUtils.cleanPath(arquivo.getOriginalFilename());
+		ArquivoDB arquivoDB = new ArquivoDB(nomeDoArquivo, arquivo.getContentType(), arquivo.getBytes());
 
 		return arquivoDBRepository.save(arquivoDB);
 	}

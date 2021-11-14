@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/")
 public class ArquivoController {
 
 	@Autowired
@@ -27,7 +27,7 @@ public class ArquivoController {
 	public ResponseEntity<MensagemResposta> uploadArquivo(@RequestParam("file") MultipartFile arquivo) {
 		String mensagem = "";
 		try {
-			service.store(arquivo);
+			service.armazenar(arquivo);
 
 			mensagem = "Uploaded do arquivo com sucesso: " + arquivo.getOriginalFilename();
 			return ResponseEntity.status(HttpStatus.OK).body(new MensagemResposta(mensagem));
@@ -41,7 +41,7 @@ public class ArquivoController {
 	public ResponseEntity<List<ResponseFile>> getListaArquivos() {
 
 		List<ResponseFile> files = service.getTodosOsArquivos().map(dbArquivo -> {
-			String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagens/")
+			String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/")
 					.path(dbArquivo.getId()).toUriString();
 
 			return new ResponseFile(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
@@ -51,7 +51,7 @@ public class ArquivoController {
 		return ResponseEntity.status(HttpStatus.OK).body(files);
 	}
 
-	@GetMapping("/imagens/{id}")
+	@GetMapping("/imagem/{id}")
 	public ResponseEntity<byte[]> getArquivo(@PathVariable String id) {
 		ArquivoDB arquivoDB = service.getArquivo(id);
 		
@@ -59,7 +59,7 @@ public class ArquivoController {
 			return 	new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
 		}
 		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + arquivoDB.getNome() + "\"")
+				.header(HttpHeaders.CONTENT_DISPOSITION, "anexo; nome do arquivo=\"" + arquivoDB.getNome() + "\"")
 				.body(arquivoDB.getData());
 	}
 
