@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 import principal.model.Cliente;
 import principal.model.Endereco;
 import principal.model.Imovel;
-import principal.model.ImovelTipo;
 import principal.model.Usuario;
 import principal.service.ClienteService;
 import principal.service.EnderecoService;
@@ -68,13 +67,13 @@ public class AirbnbcloneApplication {
 			
 			//Cadastra um imovel, mas primeiro é necessário um locatario 
 			 imovelService.salvar(new Imovel(false, 1, 1, 2,
-						"Casa de praia", 100.5, ImovelTipo.CASA,null, usuario));
+						"Casa de praia", 100.5,null, usuario));
 			 
 			Endereco endereco =  new Endereco("91150000", "Camelia","Cristal","RS","Camelias", 255, "ap201"	);
 			enderecoService.salvar(endereco);
 			
 			imovelService.salvar(new Imovel(false, 1, 1,2,
-						"Casa de praia",100.0, ImovelTipo.CASA,endereco, usuario));
+						"Casa de praia",100.0,endereco, usuario));
 
 	     
 		};

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import principal.model.Imovel;
+import principal.model.Usuario;
 import principal.service.EnderecoService;
 import principal.service.ImovelService;
 import principal.service.UsuarioService;
@@ -27,6 +28,9 @@ public class ImovelController {
 	private UsuarioService	usuarioService;
 	
 
+	
+	
+	
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Mensagem> salvar(@RequestBody Imovel imovel) {
 		
@@ -38,7 +42,13 @@ public class ImovelController {
 			return new ResponseEntity<Mensagem>(new Mensagem("Error 400 Bad Request - Motivo : "
 					+ "Campo Locatário Está Vazio!"),HttpStatus.BAD_REQUEST);
 		}
-	
+		Usuario user = usuarioService.buscarPorEmail(imovel.getUsuario().getEmail());
+	    if(user == null || !user.getSenha().equals(imovel.getUsuario().getSenha())) {
+	    	return new ResponseEntity<Mensagem>(new Mensagem("Error 400 Bad Request - Motivo : "
+					+ "Senha ou email não confere!"),HttpStatus.BAD_REQUEST);
+	    }
+		
+		
 		imovel.setUsuario(usuarioService.buscarPorEmail(imovel.getUsuario().getEmail())); 
 		serviceEndereco.salvar(imovel.getEndereco());
 		this.service.salvar(imovel);
@@ -47,6 +57,19 @@ public class ImovelController {
 
 	}
 
+	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Optional<Imovel>> buscarPorId(@PathVariable Long id) {
+
+		Optional<Imovel> imovel = this.service.buscarPorId(id);
+
+		if (imovel.isEmpty()) {
+			return new ResponseEntity<Optional<Imovel>>( HttpStatus.NOT_FOUND);
+
+		}
+		return new ResponseEntity<Optional<Imovel>>(imovel, HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Iterable<Imovel>> buscarTodos() {
 
