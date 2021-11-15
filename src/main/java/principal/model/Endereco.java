@@ -50,6 +50,22 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
 	public String getBairro() {
 		return bairro;
 	}
@@ -60,6 +76,10 @@ public class Endereco {
 
 	public String getUf() {
 		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	public String getRua() {
@@ -90,15 +110,7 @@ public class Endereco {
 		return id;
 	}
 
-	public String getCep() {
-		return cep;
-	}
 
-	@Override
-	public String toString() {
-		return "Endereco [id=" + id + ", cep=" + cep + ", cidade=" + cidade + ", bairro=" + bairro + ", uf=" + uf
-				+ ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + "]";
-	}
 
 	
 }

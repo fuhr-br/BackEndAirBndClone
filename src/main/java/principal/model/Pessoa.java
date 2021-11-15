@@ -33,7 +33,7 @@ public abstract class Pessoa {
 	@Email
 	protected String email;
 	@Column(nullable = false, name = "Senha")
-	@JsonProperty(access = Access.WRITE_ONLY)
+	//@JsonProperty(access = Access.WRITE_ONLY)
 	protected String senha;
 
 	public Pessoa() {

@@ -90,14 +90,6 @@ public class Imovel {
 		return camaSolteiro;
 	}
 
-	public Double getValorDaDiaria() {
-		return valorDaDiaria;
-	}
-
-	public void setValorDaDiaria(Double valorDaDiaria) {
-		this.valorDaDiaria = valorDaDiaria;
-	}
-
 	public void setCamaSolteiro(Integer camaSolteiro) {
 		this.camaSolteiro = camaSolteiro;
 	}
@@ -122,6 +114,10 @@ public class Imovel {
 		return descricao;
 	}
 
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	public String getImagemURL() {
 		return imagemURL;
 	}
@@ -130,12 +126,12 @@ public class Imovel {
 		this.imagemURL = imagemURL;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Double getValorDaDiaria() {
+		return valorDaDiaria;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setValorDaDiaria(Double valorDaDiaria) {
+		this.valorDaDiaria = valorDaDiaria;
 	}
 
 	public ImovelTipo getTipo() {
@@ -146,11 +142,19 @@ public class Imovel {
 		this.tipo = tipo;
 	}
 
-	public Usuario getLocatario() {
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setLocatario(Usuario usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
@@ -158,8 +162,6 @@ public class Imovel {
 		return id;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
+	
 
 }

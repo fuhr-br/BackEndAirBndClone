@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import principal.model.Imovel;
 import principal.service.EnderecoService;
 import principal.service.ImovelService;
+import principal.service.UsuarioService;
 
 @Controller
 @RequestMapping(value = "/imovel")
@@ -22,7 +23,8 @@ public class ImovelController {
 	private ImovelService service;
 	@Autowired
 	private EnderecoService serviceEndereco;
-
+	@Autowired
+	private UsuarioService	usuarioService;
 	
 
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, produces = "application/json")
@@ -32,10 +34,12 @@ public class ImovelController {
 			return new ResponseEntity<Mensagem>(new Mensagem("Error 400 Bad Request - Motivo : "
 					+ "Campo Endereço Vazio!"),HttpStatus.BAD_REQUEST);
 			
-		}else if(imovel.getLocatario() == null) {
+		}else if(imovel.getUsuario() == null) {
 			return new ResponseEntity<Mensagem>(new Mensagem("Error 400 Bad Request - Motivo : "
 					+ "Campo Locatário Está Vazio!"),HttpStatus.BAD_REQUEST);
 		}
+	
+		imovel.setUsuario(usuarioService.buscarPorEmail(imovel.getUsuario().getEmail())); 
 		serviceEndereco.salvar(imovel.getEndereco());
 		this.service.salvar(imovel);
 		
