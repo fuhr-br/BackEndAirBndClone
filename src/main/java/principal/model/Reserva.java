@@ -32,7 +32,7 @@ public class Reserva {
 
     @ManyToOne
     @JoinColumn(name = "Cliente_id")
-    private Cliente cliente;
+    private Usuario cliente;
     
     public Reserva() {}
 
@@ -56,7 +56,7 @@ public class Reserva {
 		return imovel;
 	}
 
-	public Cliente getCliente() {
+	public Usuario getCliente() {
 		return cliente;
 	}
 

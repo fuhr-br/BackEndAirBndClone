@@ -42,6 +42,7 @@ public class ImovelController {
 			return new ResponseEntity<Mensagem>(new Mensagem("Error 400 Bad Request - Motivo : "
 					+ "Campo Locatário Está Vazio!"),HttpStatus.BAD_REQUEST);
 		}
+		
 		Usuario user = usuarioService.buscarPorEmail(imovel.getUsuario().getEmail());
 	    if(user == null || !user.getSenha().equals(imovel.getUsuario().getSenha())) {
 	    	return new ResponseEntity<Mensagem>(new Mensagem("Error 400 Bad Request - Motivo : "
