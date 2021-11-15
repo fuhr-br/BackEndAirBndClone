@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "Imoveis")
 public class Imovel {
@@ -32,7 +31,8 @@ public class Imovel {
 	private String descricao;
 	@Column(name = "ImagemURL")
 	private String imagemURL;
-	
+	@Column(name = "ValorDiaria")
+	private Double valorDaDiaria;
 
 	@Column(name = "Tipo")
 	@Enumerated(EnumType.STRING)
@@ -50,21 +50,7 @@ public class Imovel {
 	}
 
 	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
-			ImovelTipo tipo, Endereco endereco, Usuario usuario) {
-		super();
-		this.arCondicionado = arCondicionado;
-		this.camaSolteiro = camaSolteiro;
-		this.camaCasal = camaCasal;
-		this.quartos = quartos;
-		this.descricao = descricao;
-		this.tipo = tipo;
-		this.endereco = endereco;
-		this.usuario = usuario;
-
-	}
-
-	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
-			String imagemURL, ImovelTipo tipo, Endereco endereco, Usuario usuario) {
+			String imagemURL, Double valorDaDiaria, ImovelTipo tipo, Endereco endereco, Usuario usuario) {
 		super();
 		this.arCondicionado = arCondicionado;
 		this.camaSolteiro = camaSolteiro;
@@ -72,6 +58,21 @@ public class Imovel {
 		this.quartos = quartos;
 		this.descricao = descricao;
 		this.imagemURL = imagemURL;
+		this.valorDaDiaria = valorDaDiaria;
+		this.tipo = tipo;
+		this.endereco = endereco;
+		this.usuario = usuario;
+	}
+
+	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
+			Double valorDaDiaria, ImovelTipo tipo, Endereco endereco, Usuario usuario) {
+		super();
+		this.arCondicionado = arCondicionado;
+		this.camaSolteiro = camaSolteiro;
+		this.camaCasal = camaCasal;
+		this.quartos = quartos;
+		this.descricao = descricao;
+		this.valorDaDiaria = valorDaDiaria;
 		this.tipo = tipo;
 		this.endereco = endereco;
 		this.usuario = usuario;
@@ -87,6 +88,14 @@ public class Imovel {
 
 	public Integer getCamaSolteiro() {
 		return camaSolteiro;
+	}
+
+	public Double getValorDaDiaria() {
+		return valorDaDiaria;
+	}
+
+	public void setValorDaDiaria(Double valorDaDiaria) {
+		this.valorDaDiaria = valorDaDiaria;
 	}
 
 	public void setCamaSolteiro(Integer camaSolteiro) {
@@ -152,6 +161,5 @@ public class Imovel {
 	public Endereco getEndereco() {
 		return endereco;
 	}
-
 
 }

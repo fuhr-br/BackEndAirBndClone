@@ -68,13 +68,13 @@ public class AirbnbcloneApplication {
 			
 			//Cadastra um imovel, mas primeiro é necessário um locatario 
 			 imovelService.salvar(new Imovel(false, 1, 1, 2,
-						"Casa de praia", ImovelTipo.CASA,null, usuario));
+						"Casa de praia", 100.5, ImovelTipo.CASA,null, usuario));
 			 
 			Endereco endereco =  new Endereco("91150000", "Camelia","Cristal","RS","Camelias", 255, "ap201"	);
 			enderecoService.salvar(endereco);
 			
 			imovelService.salvar(new Imovel(false, 1, 1,2,
-						"Casa de praia", ImovelTipo.CASA,endereco, usuario));
+						"Casa de praia",100.0, ImovelTipo.CASA,endereco, usuario));
 
 	     
 		};
