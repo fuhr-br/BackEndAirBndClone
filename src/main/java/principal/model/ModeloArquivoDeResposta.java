@@ -12,7 +12,11 @@ public class ModeloArquivoDeResposta {
 		this.tipo = tipo;
 		this.tam = tam;
 	}
-
+	public ModeloArquivoDeResposta(String url) {
+	
+		this.url = url;
+	
+	}
 	public String getName() {
 		return nome;
 	}

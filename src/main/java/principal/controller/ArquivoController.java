@@ -54,6 +54,39 @@ public class ArquivoController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(files);
 	}
+	
+	@GetMapping("/imagem/busca/{id}")
+	public ResponseEntity<String> getURLArquivo(@PathVariable String id) {
+
+		List<ModeloArquivoDeResposta> arquivos = service.getTodosOsArquivos().filter(dbArquivo -> dbArquivo.getId().equals(id)).map(dbArquivo -> {
+			
+			String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/")
+					.path(dbArquivo.getId()).toUriString();
+
+			return new ModeloArquivoDeResposta(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
+					dbArquivo.getData().length) ;
+		}).collect(Collectors.toList());
+		if(arquivos.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Status: 404 NOT FOUND - Motivo: Imagem não encontrada! ");
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(arquivos.get(0).getUrl());
+	}
+	
+	@GetMapping("/imagem/nome/{nome}")
+	public ResponseEntity<String> gerURLArquivo(@PathVariable String nome) {
+		List<ModeloArquivoDeResposta> arquivos = service.getTodosOsArquivos().filter(dbArquivo -> dbArquivo.getNome().equals(nome)).map(dbArquivo -> {
+			
+			String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/")
+					.path(dbArquivo.getId()).toUriString();
+
+			return new ModeloArquivoDeResposta(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
+					dbArquivo.getData().length) ;
+		}).collect(Collectors.toList());
+		if(arquivos.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Status: 404 NOT FOUND - Motivo: Imagem não encontrada! ");
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(arquivos.get(0).getUrl());
+	}
 
 	@GetMapping("/imagem/{id}")
 	public ResponseEntity<byte[]> getArquivo(@PathVariable String id) {
