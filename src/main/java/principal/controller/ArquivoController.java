@@ -28,23 +28,31 @@ public class ArquivoController {
 	private ArquivioService service;
 
 	@PostMapping("/upload")
-	public ResponseEntity<Mensagem> uploadArquivo(@RequestParam("file") MultipartFile arquivo) {
+	public ResponseEntity<String> uploadArquivo(@RequestParam("file") MultipartFile arquivo) {
 		String mensagem = "";
 		try {
 			service.armazenar(arquivo);
+			
+			List<ModeloArquivoDeResposta> arquivos = service.getTodosOsArquivos().map(dbArquivo -> {
+				String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/")
+						.path(dbArquivo.getId()).toUriString();
 
-			mensagem = "Uploaded do arquivo com sucesso: " + arquivo.getOriginalFilename();
-			return ResponseEntity.status(HttpStatus.OK).body(new Mensagem(mensagem));
+				return new ModeloArquivoDeResposta(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
+						dbArquivo.getData().length);
+			}).collect(Collectors.toList());
+			
+			return ResponseEntity.status(HttpStatus.OK).body(arquivos.get(arquivos.size()-1).getUrl());
+			
 		} catch (Exception e) {
 			mensagem = "Não foi possível fazer o upload do arquivo: " + arquivo.getOriginalFilename() + "!";
-			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new Mensagem(mensagem));
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(mensagem);
 		}
 	}
 
 	@GetMapping("/imagens")
 	public ResponseEntity<List<ModeloArquivoDeResposta>> getListaArquivos() {
 
-		List<ModeloArquivoDeResposta> files = service.getTodosOsArquivos().map(dbArquivo -> {
+		List<ModeloArquivoDeResposta> arquivos = service.getTodosOsArquivos().map(dbArquivo -> {
 			String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/")
 					.path(dbArquivo.getId()).toUriString();
 
@@ -52,7 +60,7 @@ public class ArquivoController {
 					dbArquivo.getData().length);
 		}).collect(Collectors.toList());
 
-		return ResponseEntity.status(HttpStatus.OK).body(files);
+		return ResponseEntity.status(HttpStatus.OK).body(arquivos);
 	}
 	
 	@GetMapping("/imagem/busca/{id}")
