@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,8 @@ public class ImovelController {
 	private ImovelService service;
 	@Autowired
 	private EnderecoService serviceEndereco;
-
+	
+	@CrossOrigin
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Mensagem> salvar(@RequestBody Imovel imovel) {
 
@@ -38,7 +40,7 @@ public class ImovelController {
 		return new ResponseEntity<Mensagem>(HttpStatus.CREATED);
 
 	}
-
+	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Optional<Imovel>> buscarPorId(@PathVariable Long id) {
 
@@ -50,7 +52,7 @@ public class ImovelController {
 		}
 		return new ResponseEntity<Optional<Imovel>>(imovel, HttpStatus.OK);
 	}
-
+	@CrossOrigin
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Iterable<Imovel>> buscarTodos() {
 
@@ -62,7 +64,7 @@ public class ImovelController {
 		}
 		return new ResponseEntity<Iterable<Imovel>>(imovel, HttpStatus.OK);
 	}
-
+	@CrossOrigin
 	@RequestMapping(value = "/{imovelId}", method = RequestMethod.DELETE, produces = "application/json")
 	@Transactional
 	public ResponseEntity<Mensagem> deletar(@PathVariable Long imovelId) {
@@ -79,7 +81,7 @@ public class ImovelController {
 				HttpStatus.NO_CONTENT);
 
 	}
-
+	@CrossOrigin
 	@RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<Imovel> atualizar(@RequestBody Imovel imovel) {
 

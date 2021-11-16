@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService service;
-
+	@CrossOrigin
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Mensagem> salvar(@RequestBody Usuario usuario) {
 
@@ -31,7 +32,7 @@ public class UsuarioController {
 				HttpStatus.CREATED);
 
 	}
-
+	@CrossOrigin
 	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Usuario> buscarPorEmail(@PathVariable String email) {
 
@@ -46,7 +47,7 @@ public class UsuarioController {
 		}
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
-
+	@CrossOrigin
 	@RequestMapping(value = "/login", params = { "email",
 			"senha" }, method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Mensagem> login(@RequestParam("email") String email, @RequestParam("senha") String senha) {
@@ -58,7 +59,7 @@ public class UsuarioController {
 		}
 		return new ResponseEntity<Mensagem>(new Mensagem("Login autorizado!"), HttpStatus.OK);
 	}
-
+	@CrossOrigin
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Iterable<Usuario>> buscarTodos() {
 
@@ -70,7 +71,7 @@ public class UsuarioController {
 		}
 		return new ResponseEntity<Iterable<Usuario>>(usuarios, HttpStatus.OK);
 	}
-
+	@CrossOrigin
 	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Optional<Usuario>> buscarPorId(@PathVariable Long id) {
 
@@ -82,7 +83,7 @@ public class UsuarioController {
 		}
 		return new ResponseEntity<Optional<Usuario>>(usuario, HttpStatus.OK);
 	}
-
+	@CrossOrigin
 	@RequestMapping(value = "/atualizar", method = RequestMethod.PUT, produces = "application/json")
 	@Transactional
 	public ResponseEntity<Mensagem> atualizar(@RequestBody Usuario usuario) {

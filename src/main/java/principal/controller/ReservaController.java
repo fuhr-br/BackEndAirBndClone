@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class ReservaController {
 	@Autowired
 	private ReservaService service;
 	
-	
+	@CrossOrigin
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Mensagem> salvar(@RequestBody Reserva reserva) {
 
@@ -30,7 +31,7 @@ public class ReservaController {
 		return new ResponseEntity<Mensagem>(new Mensagem("Status: 200 OK - Reserva Criada Com Sucesso! "),HttpStatus.CREATED);
 
 	}
-	
+	@CrossOrigin
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Iterable<Reserva>> buscarTodos() {
 
@@ -48,7 +49,7 @@ public class ReservaController {
 		}
 		return new ResponseEntity<Iterable<Reserva>>(reservas, HttpStatus.OK);
 	}
-	
+	@CrossOrigin
 	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Optional<Reserva>> buscarPorId(@PathVariable Long id) {
 
@@ -60,7 +61,7 @@ public class ReservaController {
 		}
 		return new ResponseEntity<Optional<Reserva>>(reserva, HttpStatus.OK);
 	}
-	
+	@CrossOrigin
 	@RequestMapping(value = "/atualizar", method = RequestMethod.PUT, produces = "application/json")
 	@Transactional
 	public ResponseEntity<Mensagem> atualizar(@RequestBody Reserva reserva) {
