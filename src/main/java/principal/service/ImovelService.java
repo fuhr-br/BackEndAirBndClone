@@ -1,5 +1,6 @@
 package principal.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,9 @@ public class ImovelService {
 	public Optional<Imovel> buscarPorId(Long id) {
 		return repository.findById(id);
 	}
-	
-	
+	public List<Imovel> buscarPorBairro(String bairro) {
+		return repository.findByBairro(bairro);
+	}
 	
 	
 }

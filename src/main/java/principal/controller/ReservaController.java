@@ -88,22 +88,7 @@ public class ReservaController {
 
 	}
 	
-	/*public 
-        
-        Query query = em.createQuery("SELECT r FROM Reserva r "
-                + "WHERE ((dataEntrada <= :dataEntrada AND dataSaida >= :dataEntrada) "
-                + "OR (dataEntrada <= :dataSaida AND dataSaida >= :dataSaida) "
-                + "OR (dataEntrada > :dataEntrada AND dataSaida <:dataSaida))"
-                + "AND cabana_id = :idCabana", Reserva.class);
-        query.setParameter("dataEntrada", dataEntrada);
-        query.setParameter("dataSaida", dataSaida);
-        query.setParameter("idCabana", idCabana);
 
-        List<Reserva> reservas = (List<Reserva>)query.getResultList();
-
-        return reservas;
-    }
-*/
 	
 	
 	

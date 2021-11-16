@@ -1,5 +1,6 @@
 package principal.controller;
 
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import principal.model.Imovel;
-import principal.service.EnderecoService;
 import principal.service.ImovelService;
 
 @Controller
@@ -21,25 +21,16 @@ public class ImovelController {
 
 	@Autowired
 	private ImovelService service;
-	@Autowired
-	private EnderecoService serviceEndereco;
-	
+
 	@CrossOrigin
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Mensagem> salvar(@RequestBody Imovel imovel) {
-
-		if (imovel.getEndereco() == null) {
-			return new ResponseEntity<Mensagem>(
-					new Mensagem("Error 400 Bad Request - Motivo : " + "Campo Endereço Vazio!"),
-					HttpStatus.BAD_REQUEST);
-
-		}
-		serviceEndereco.salvar(imovel.getEndereco());
 		this.service.salvar(imovel);
 
 		return new ResponseEntity<Mensagem>(HttpStatus.CREATED);
 
 	}
+
 	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Optional<Imovel>> buscarPorId(@PathVariable Long id) {
@@ -52,6 +43,20 @@ public class ImovelController {
 		}
 		return new ResponseEntity<Optional<Imovel>>(imovel, HttpStatus.OK);
 	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/bairro/{bairro}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<Imovel>> buscarPorId(@PathVariable String bairro) {
+
+		List<Imovel> imovel = this.service.buscarPorBairro(bairro);
+
+		if (imovel == null) {
+			return new ResponseEntity<List<Imovel>>(HttpStatus.NOT_FOUND);
+
+		}
+		return new ResponseEntity<List<Imovel>>(imovel, HttpStatus.OK);
+	}
+
 	@CrossOrigin
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Iterable<Imovel>> buscarTodos() {
@@ -64,6 +69,7 @@ public class ImovelController {
 		}
 		return new ResponseEntity<Iterable<Imovel>>(imovel, HttpStatus.OK);
 	}
+
 	@CrossOrigin
 	@RequestMapping(value = "/{imovelId}", method = RequestMethod.DELETE, produces = "application/json")
 	@Transactional
@@ -81,6 +87,7 @@ public class ImovelController {
 				HttpStatus.NO_CONTENT);
 
 	}
+
 	@CrossOrigin
 	@RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<Imovel> atualizar(@RequestBody Imovel imovel) {

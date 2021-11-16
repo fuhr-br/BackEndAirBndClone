@@ -33,15 +33,57 @@ public class Imovel {
 	@Column(name = "Tel_Proprietario", nullable = false)
 	private Long telefoneProprietario;
 
-	@OneToOne
-	@JoinColumn()
-	private Endereco endereco;
+	@Column(nullable = false, name = "Cep")
+	private String cep;
+	
+	@Column(nullable = false, name = "Cidade")
+	private String cidade;
+	
+	@Column(nullable = false, name = "Bairro")
+	private String bairro;
+	
+	@Column(nullable = false, name = "Uf")
+	private String uf;
+
+	@Column(nullable = false, name = "Rua", length = 150)
+	private String rua;
+
+	@Column(nullable = false, name = "Numero", length = 10)
+	private int numero;
+
+	@Column(nullable = false, name = "Complemento", length = 20)
+	private String complemento;
 
 	public Imovel() {
 	}
 
+	
+
 	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
-			String imagemURL, Double valorDaDiaria, Long telefoneProprietario, Endereco endereco) {
+			Double valorDaDiaria, Long telefoneProprietario, String cep, String cidade, String bairro, String uf,
+			String rua, int numero, String complemento) {
+		super();
+		this.arCondicionado = arCondicionado;
+		this.camaSolteiro = camaSolteiro;
+		this.camaCasal = camaCasal;
+		this.quartos = quartos;
+		this.descricao = descricao;
+		this.valorDaDiaria = valorDaDiaria;
+		this.telefoneProprietario = telefoneProprietario;
+		this.cep = cep;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.uf = uf;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+	}
+
+
+
+	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
+			String imagemURL, Double valorDaDiaria, Long telefoneProprietario, String cep, String cidade, String bairro,
+			String uf, String rua, int numero, String complemento) {
 		super();
 		this.arCondicionado = arCondicionado;
 		this.camaSolteiro = camaSolteiro;
@@ -51,21 +93,16 @@ public class Imovel {
 		this.imagemURL = imagemURL;
 		this.valorDaDiaria = valorDaDiaria;
 		this.telefoneProprietario = telefoneProprietario;
-		this.endereco = endereco;
+		this.cep = cep;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.uf = uf;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
 	}
 
-	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
-			Double valorDaDiaria, Long telefoneProprietario, Endereco endereco) {
-		super();
-		this.arCondicionado = arCondicionado;
-		this.camaSolteiro = camaSolteiro;
-		this.camaCasal = camaCasal;
-		this.quartos = quartos;
-		this.descricao = descricao;
-		this.valorDaDiaria = valorDaDiaria;
-		this.telefoneProprietario = telefoneProprietario;
-		this.endereco = endereco;
-	}
+
 
 	public Boolean getArCondicionado() {
 		return arCondicionado;
@@ -131,13 +168,90 @@ public class Imovel {
 		this.valorDaDiaria = valorDaDiaria;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+
+	public String getCep() {
+		return cep;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
+
+
+
+	public String getCidade() {
+		return cidade;
+	}
+
+
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+
+
+	public String getBairro() {
+		return bairro;
+	}
+
+
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+
+
+	public String getUf() {
+		return uf;
+	}
+
+
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+
+
+	public String getRua() {
+		return rua;
+	}
+
+
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+
+
+	public int getNumero() {
+		return numero;
+	}
+
+
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+
 
 	public Long getId() {
 		return id;
