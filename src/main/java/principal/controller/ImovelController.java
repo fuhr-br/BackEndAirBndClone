@@ -97,6 +97,7 @@ public class ImovelController {
 				imovelParaAtualizar.get().setDescricao(imovel.getDescricao());
 				imovelParaAtualizar.get().setQuartos(imovel.getQuartos());
 				imovelParaAtualizar.get().setTelefoneProprietario(imovel.getTelefoneProprietario());
+				imovelParaAtualizar.get().setImagemURL(imovel.getImagemURL());
 
 				this.service.salvar(imovelParaAtualizar.get());
 
