@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 class ImovelTest {
 	Endereco endereco = new Endereco("91150000", "Porto Alegre", "Cristal", "RS", "Camelias", 255, "ap201");
-	Usuario usuario = new Usuario("Jack", 34, 333333, "andersonfuhr@yahoo", "@a1234");
-	Imovel imovel = new Imovel(false, 1, 1, 2, "Casa de praia", 100.0, endereco, usuario);
+	
+	Imovel imovel = new Imovel(false, 1, 1, 2, "Casa de praia",100.0, 22554558l,endereco);
 
 	@Test
 	void testEndereco() throws Exception{
@@ -21,17 +21,6 @@ class ImovelTest {
 
 	}
 
-	@Test
-	void testImovelUsuario()throws Exception {
-
-		assertEquals(imovel.getUsuario(), usuario);
-		
-		Usuario usuarioValida = new Usuario("Anderson", 38, 4333333, "andersonfuhr@yahoo.com", "@a1aa234");
-		
-		imovel.setUsuario(usuarioValida);
-		assertEquals(imovel.getUsuario(), usuarioValida);
-
-	}
 
 	@Test
 	void testArCoondicionado() throws Exception{

@@ -29,22 +29,20 @@ public class Imovel {
 	private String descricao;
 	@Column(name = "ImagemURL")
 	private String imagemURL;
-	@Column(name = "ValorDiaria")
+	@Column(name = "ValorDiaria", nullable = false)
 	private Double valorDaDiaria;
+	@Column(name = "Tel_Proprietario", nullable = false)
+	private Long telefoneProprietario;
 
 	@OneToOne
 	@JoinColumn()
 	private Endereco endereco;
 
-	@ManyToOne()
-	@JoinColumn(name = "Locatario_ID", nullable = false)
-	private Usuario usuario;
-
 	public Imovel() {
 	}
 
 	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
-			String imagemURL, Double valorDaDiaria, Endereco endereco, Usuario usuario) {
+			String imagemURL, Double valorDaDiaria, Long telefoneProprietario, Endereco endereco) {
 		super();
 		this.arCondicionado = arCondicionado;
 		this.camaSolteiro = camaSolteiro;
@@ -53,12 +51,12 @@ public class Imovel {
 		this.descricao = descricao;
 		this.imagemURL = imagemURL;
 		this.valorDaDiaria = valorDaDiaria;
+		this.telefoneProprietario = telefoneProprietario;
 		this.endereco = endereco;
-		this.usuario = usuario;
 	}
 
 	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
-			Double valorDaDiaria, Endereco endereco, Usuario usuario) {
+			Double valorDaDiaria, Long telefoneProprietario, Endereco endereco) {
 		super();
 		this.arCondicionado = arCondicionado;
 		this.camaSolteiro = camaSolteiro;
@@ -66,8 +64,8 @@ public class Imovel {
 		this.quartos = quartos;
 		this.descricao = descricao;
 		this.valorDaDiaria = valorDaDiaria;
+		this.telefoneProprietario = telefoneProprietario;
 		this.endereco = endereco;
-		this.usuario = usuario;
 	}
 
 	public Boolean getArCondicionado() {
@@ -110,6 +108,14 @@ public class Imovel {
 		this.descricao = descricao;
 	}
 
+	public Long getTelefoneProprietario() {
+		return telefoneProprietario;
+	}
+
+	public void setTelefoneProprietario(Long telefoneProprietario) {
+		this.telefoneProprietario = telefoneProprietario;
+	}
+
 	public String getImagemURL() {
 		return imagemURL;
 	}
@@ -134,18 +140,8 @@ public class Imovel {
 		this.endereco = endereco;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	public Long getId() {
 		return id;
 	}
-
-	
 
 }
