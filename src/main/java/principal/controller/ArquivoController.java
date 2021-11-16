@@ -30,6 +30,7 @@ public class ArquivoController {
 	private ArquivioService service;
 
 	// envia umarquivo e retorna a URL do mesmo em forma de STRING
+	
 	@CrossOrigin
 	@PostMapping("/upload")
 	public ResponseEntity<String> uploadArquivo(@RequestParam("file") MultipartFile arquivo) {
@@ -38,13 +39,15 @@ public class ArquivoController {
 			service.armazenar(arquivo);
 
 			List<ModeloArquivoDeResposta> arquivos = service.getTodosOsArquivos().map(dbArquivo -> {
-				String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/")
+				String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/download/")
 						.path(dbArquivo.getId()).toUriString();
 
 				return new ModeloArquivoDeResposta(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
 						dbArquivo.getData().length);
 			}).collect(Collectors.toList());
 
+			
+			
 			return ResponseEntity.status(HttpStatus.OK).body(arquivos.get(arquivos.size() - 1).getUrl());
 
 		} catch (Exception e) {
@@ -54,12 +57,13 @@ public class ArquivoController {
 	}
 
 	// Lista todos os arquivos no banco
+	
 	@CrossOrigin
 	@GetMapping("/imagens")
 	public ResponseEntity<List<ModeloArquivoDeResposta>> getListaArquivos() {
 
 		List<ModeloArquivoDeResposta> arquivos = service.getTodosOsArquivos().map(dbArquivo -> {
-			String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/")
+			String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/download/")
 					.path(dbArquivo.getId()).toUriString();
 
 			return new ModeloArquivoDeResposta(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
@@ -70,6 +74,7 @@ public class ArquivoController {
 	}
 
 	// Procura por Id e retorna uma URL em forma de STRING
+	
 	@CrossOrigin
 	@GetMapping("/busca/{id}")
 	public ResponseEntity<String> getURLArquivo(@PathVariable String id) {
@@ -77,7 +82,7 @@ public class ArquivoController {
 		List<ModeloArquivoDeResposta> arquivos = service.getTodosOsArquivos()
 				.filter(dbArquivo -> dbArquivo.getId().equals(id)).map(dbArquivo -> {
 
-					String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/")
+					String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/download/")
 							.path(dbArquivo.getId()).toUriString();
 
 					return new ModeloArquivoDeResposta(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
@@ -91,13 +96,14 @@ public class ArquivoController {
 	}
 
 	// Procura por nome do arquivo e retorna uma URL em forma de STRING
+	
 	@CrossOrigin
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<String> gerURLArquivo(@PathVariable String nome) {
 		List<ModeloArquivoDeResposta> arquivos = service.getTodosOsArquivos()
 				.filter(dbArquivo -> dbArquivo.getNome().equals(nome)).map(dbArquivo -> {
 
-					String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/")
+					String arquivoDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/imagem/download/")
 							.path(dbArquivo.getId()).toUriString();
 
 					return new ModeloArquivoDeResposta(dbArquivo.getNome(), arquivoDownloadUri, dbArquivo.getTipo(),
@@ -111,6 +117,7 @@ public class ArquivoController {
 	}
 
 	// Faz o dowload do arquivo pelo ID
+	
 	@CrossOrigin
 	@GetMapping("/download/{id}")
 	public ResponseEntity<byte[]> getArquivo(@PathVariable String id) {
