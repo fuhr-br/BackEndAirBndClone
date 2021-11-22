@@ -32,6 +32,9 @@ public class UsuarioController {
 				HttpStatus.CREATED);
 
 	}
+	
+	
+	
 	@CrossOrigin
 	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Usuario> buscarPorEmail(@PathVariable String email) {
@@ -50,14 +53,14 @@ public class UsuarioController {
 	@CrossOrigin
 	@RequestMapping(value = "/login", params = { "email",
 			"senha" }, method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Mensagem> login(@RequestParam("email") String email, @RequestParam("senha") String senha) {
+	public ResponseEntity<Boolean> login(@RequestParam("email") String email, @RequestParam("senha") String senha) {
 
 		Optional<Usuario> usuario = this.service.login(email, senha);
 		if (usuario.isEmpty()) {
-			return new ResponseEntity<Mensagem>(new Mensagem("Login não autorizado!"), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
 
 		}
-		return new ResponseEntity<Mensagem>(new Mensagem("Login autorizado!"), HttpStatus.OK);
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 	@CrossOrigin
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json")
