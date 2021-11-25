@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class ValidaEmail {
 	
-	//interface funcionar com lambda para validar se é um email
+	//interface funcional com lambda para validar se é um email
 	public static Predicate<String> isEmail = email -> {
 		var validaemail = "^(.+)@(.+)$";
 		var pattern = Pattern.compile(validaemail);

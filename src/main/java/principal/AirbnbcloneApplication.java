@@ -30,11 +30,11 @@ public class AirbnbcloneApplication {
 			usuarioService.salvar(usuario);
 			
 			//Cadastra um imovel
-			 imovelService.salvar(new Imovel(false, 2, 2, 4, "Casa de Praia", 100.5, 5185452158l, "91111000", "Porto Alegre", 
+			 imovelService.salvar(new Imovel(false, 2, 2, 4, "Casa de Praia", "https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5, 5185452158l, "91111000", "Porto Alegre", 
 					"Rio Branco", "RS",	"Ijui", 255, "ap 201"));
 			 
 		
-			imovelService.salvar(new Imovel(false, 2, 2, 4, "Casa de Praia", 100.5, 5185452158l, "91111000", "Porto Alegre", 
+			imovelService.salvar(new Imovel(false, 2, 2, 4, "Casa de Praia","https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960" , 100.5, 5185452158l, "91111000", "Porto Alegre", 
 					"Cristal", "RS",	"Ijui", 255, "ap 201"));
 
 	     

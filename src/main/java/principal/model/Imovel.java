@@ -62,18 +62,18 @@ public class Imovel {
 			String rua, int numero, String complemento) {
 		super();
 		this.arCondicionado = arCondicionado;
-		this.camaSolteiro = camaSolteiro;
-		this.camaCasal = camaCasal;
-		this.quartos = quartos;
+		this.setCamaSolteiro(camaSolteiro);
+		this.setCamaCasal(camaCasal); 
+		this.setQuartos(quartos);
 		this.descricao = descricao;
 		this.valorDaDiaria = valorDaDiaria;
 		this.telefoneProprietario = telefoneProprietario;
 		this.cep = cep;
-		this.cidade = cidade;
+		this.setCidade(cidade);
 		this.bairro = bairro;
 		this.uf = uf;
 		this.rua = rua;
-		this.numero = numero;
+		this.setNumero(numero);
 		this.complemento = complemento;
 	}
 
@@ -92,7 +92,7 @@ public class Imovel {
 		this.valorDaDiaria = valorDaDiaria;
 		this.telefoneProprietario = telefoneProprietario;
 		this.cep = cep;
-		this.cidade = cidade;
+		this.setCidade(cidade);
 		this.bairro = bairro;
 		this.uf = uf;
 		this.rua = rua;
@@ -115,7 +115,9 @@ public class Imovel {
 	}
 
 	public void setCamaSolteiro(Integer camaSolteiro) {
-		this.camaSolteiro = camaSolteiro;
+		
+		this.camaSolteiro =	camaSolteiro < 0  ? 0 : camaSolteiro;
+		
 	}
 
 	public Integer getCamaCasal() {
@@ -123,7 +125,8 @@ public class Imovel {
 	}
 
 	public void setCamaCasal(Integer camaCasal) {
-		this.camaCasal = camaCasal;
+		this.camaCasal = (camaCasal > 0  ) ? camaCasal : 0;
+		
 	}
 
 	public Integer getQuartos() {
@@ -131,7 +134,8 @@ public class Imovel {
 	}
 
 	public void setQuartos(Integer quartos) {
-		this.quartos = quartos;
+		
+		this.quartos = quartos < 0 ? 0 : quartos;
 	}
 
 	public String getDescricao() {
@@ -186,7 +190,7 @@ public class Imovel {
 
 
 	public void setCidade(String cidade) {
-		this.cidade = cidade;
+		this.cidade = "Porto Alegre";
 	}
 
 
@@ -234,7 +238,7 @@ public class Imovel {
 
 
 	public void setNumero(int numero) {
-		this.numero = numero;
+		this.numero = numero < 1 ? 0 : numero;
 	}
 
 
