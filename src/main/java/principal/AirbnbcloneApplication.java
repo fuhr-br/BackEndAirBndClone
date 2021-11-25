@@ -24,9 +24,9 @@ public class AirbnbcloneApplication {
 		return (args) -> {
 
 			//Cadastra um usuario
-			Usuario usuario = new Usuario("Nicolas Bitenca", 18, 51984545458l, "Jack@yahoo.com", "1234");
+			Usuario usuario = new Usuario("Nicolas Bitenca", 18, "(51) 984545458l", "Jack@yahoo.com", "1234");
 			usuarioService.salvar(usuario);
-		     usuario = new Usuario("Diego Azambuja", 34, 35985452124l, "diego@yahoo.com", "1234");
+		     usuario = new Usuario("Diego Azambuja", 34, "35985452124l", "diego@yahoo.com", "1234");
 			usuarioService.salvar(usuario);
 			
 			//Cadastra um imovel

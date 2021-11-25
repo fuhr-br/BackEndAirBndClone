@@ -27,7 +27,7 @@ public abstract class Pessoa {
 	protected Integer idade;
 
 	@Column(nullable = false, name = "Telefone")
-	protected Long telefone;
+	protected String telefone;
 
 	@Column(nullable = false, name = "Email", unique = true)
 	@Email
@@ -39,7 +39,7 @@ public abstract class Pessoa {
 	public Pessoa() {
 	}
 
-	public Pessoa(String nome, Integer idade, Long telefone, String email, String senha) {
+	public Pessoa(String nome, Integer idade, String telefone, String email, String senha) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
@@ -49,11 +49,19 @@ public abstract class Pessoa {
 		this.id = null;
 	}
 
-	public Long getTelefone() {
+	public Pessoa(String nome, Integer idade, String telefone, String email) {
+		this.nome = nome;
+		this.idade = idade;
+		this.telefone = telefone;
+		this.email = email;
+	}
+
+
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Long telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
