@@ -17,6 +17,12 @@ public class Usuario extends Pessoa {
 		super(nome, idade, telefone, email, senha);
 	}
 
+	public Usuario(String nome, Integer idade, String telefone, String email) {
+		super(nome, idade, telefone, email);
+	}
+
+
+	
 
 
 

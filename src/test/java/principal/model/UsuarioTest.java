@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class UsuarioTest {
+class UsuarioTest {
     @Test
-	void testGetUsuario() {
-		// Usuario usuario = new Usuario("Nicolas Bitenca",18,5184545458,"Jack@yahoo.com");
+	void testGetNome() {
+		Usuario usuario = new Usuario("Nicolas Bitenca",18,"(51) 98454-5458","Jack@yahoo.com");
 
-		// assertEquals(usuario.getUsuario(), "Nicolas Bitenca");
+		assertEquals(usuario.getNome(), "Nicolas Bitenca");
 
 	}
 }
