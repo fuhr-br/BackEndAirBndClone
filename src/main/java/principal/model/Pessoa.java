@@ -96,6 +96,17 @@ public abstract class Pessoa {
 	public Integer getIdade() {
 		return idade;
 	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public void setIdade(Integer idade) {
+		this.idade = idade;
+	}
+
+
 
 
 }
