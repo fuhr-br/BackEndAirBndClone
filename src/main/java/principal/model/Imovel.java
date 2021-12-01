@@ -7,113 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
 @Entity
 @Table(name = "Imoveis")
+@Builder
+@AllArgsConstructor
+@Data
 public class Imovel {
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Boolean getArCondicionado() {
-		return arCondicionado;
-	}
-
-	public void setArCondicionado(Boolean arCondicionado) {
-		this.arCondicionado = arCondicionado;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getImagemURL() {
-		return imagemURL;
-	}
-
-	public void setImagemURL(String imagemURL) {
-		this.imagemURL = imagemURL;
-	}
-
-	public Long getTelefoneProprietario() {
-		return telefoneProprietario;
-	}
-
-	public void setTelefoneProprietario(Long telefoneProprietario) {
-		this.telefoneProprietario = telefoneProprietario;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getUf() {
-		return uf;
-	}
-
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
-	public String getRua() {
-		return rua;
-	}
-
-	public void setRua(String rua) {
-		this.rua = rua;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public Integer getCamaSolteiro() {
-		return camaSolteiro;
-	}
-
-	public Integer getCamaCasal() {
-		return camaCasal;
-	}
-
-	public Integer getQuartos() {
-		return quartos;
-	}
-
-	public Double getValorDaDiaria() {
-		return valorDaDiaria;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public int getNumero() {
-		return numero;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -198,12 +101,6 @@ public class Imovel {
 		this.rua = rua;
 		this.numero = numero;
 		this.complemento = complemento;
-	}
-	
-
-	private void setNumero(int numero2) {
-		this.numero = numero2;
-		
 	}
 
 	public void setCamaSolteiro(Integer camaSolteiro) {

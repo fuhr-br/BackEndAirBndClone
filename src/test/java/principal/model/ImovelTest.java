@@ -8,19 +8,14 @@ class ImovelTest {
 
 	@Test
 	void testGetCidade() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
-
+		Imovel imovel = Imovel.builder().cidade("Porto Alegre").build();
 		assertEquals(imovel.getCidade(), "Porto Alegre");
 
 	}
 
 	@Test
 	void testSetCidade() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
+		Imovel imovel = Imovel.builder().cidade("alvorada").build();
 
 		imovel.setCidade(null);
 		assertEquals(imovel.getCidade(), "Porto Alegre");
@@ -32,9 +27,7 @@ class ImovelTest {
 
 	@Test
 	void testGetArcondicionado() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
+		Imovel imovel = Imovel.builder().arCondicionado(false).build();
 
 		assertEquals(imovel.getArCondicionado(), false);
 
@@ -42,9 +35,7 @@ class ImovelTest {
 
 	@Test
 	void testSetArcondicionado() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
+		Imovel imovel = Imovel.builder().arCondicionado(false).build();
 
 		imovel.setArCondicionado(null);
 		assertEquals(imovel.getArCondicionado(), null);
@@ -56,9 +47,7 @@ class ImovelTest {
 
 	@Test
 	void testGetCamaSolteiro() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
+		Imovel imovel = Imovel.builder().camaSolteiro(2).build();
 
 		assertEquals(imovel.getCamaSolteiro(), 2);
 
@@ -66,9 +55,7 @@ class ImovelTest {
 
 	@Test
 	void testSetCamaSolteiro() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
+		Imovel imovel = Imovel.builder().camaSolteiro(1).build();
 
 		imovel.setCamaSolteiro(0);
 		assertEquals(imovel.getCamaSolteiro(), 0);
@@ -80,9 +67,7 @@ class ImovelTest {
 
 	@Test
 	void testGetCamaCasal() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
+		Imovel imovel = Imovel.builder().camaCasal(2).build();
 
 		assertEquals(imovel.getCamaCasal(), 2);
 
@@ -90,9 +75,7 @@ class ImovelTest {
 
 	@Test
 	void testSetCamaCasal() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
+		Imovel imovel = Imovel.builder().camaCasal(2).build();
 
 		imovel.setCamaCasal(0);
 		assertEquals(imovel.getCamaCasal(), 0);
@@ -104,9 +87,7 @@ class ImovelTest {
 
 	@Test
 	void testGetQuartos() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
+		Imovel imovel = Imovel.builder().quartos(4).build();
 
 		assertEquals(imovel.getQuartos(), 4);
 
@@ -114,9 +95,7 @@ class ImovelTest {
 
 	@Test
 	void testSetQuartos() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
+		Imovel imovel = Imovel.builder().quartos(4).build();
 
 		imovel.setQuartos(0);
 		assertEquals(imovel.getQuartos(), 0);
@@ -125,35 +104,28 @@ class ImovelTest {
 		assertEquals(imovel.getQuartos(), 0);
 
 	}
-	
+
 	@Test
 	void testGetDescricao() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia", 
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 
-				100.5, 5185452158l, "91111000", "Canoas", 
-				"Rio Branco", "RS",	"Ijui", 255, "ap 201");	
-			
+		Imovel imovel = Imovel.builder().descricao("Casa de Praia").build();
+
 		assertEquals(imovel.getDescricao(), "Casa de Praia");
-	
+
 	}
-	
+
 	@Test
 	void testSetDescricao() {
-		Imovel imovel = new Imovel(false, 2, 2, 4, "Casa de Praia",
-				"https://a0.muscache.com/im/pictures/283182b1-33ad-4f50-b8a5-923a1b77b4b3.jpg?im_w=960", 100.5,
-				5185452158l, "91111000", "Canoas", "Rio Branco", "RS", "Ijui", 255, "ap 201");
+		Imovel imovel = Imovel.builder().descricao("Casa de Praia").build();
 
 		imovel.setDescricao("Casa");
 		assertEquals(imovel.getDescricao(), "Casa");
 
 		imovel.setDescricao("");
 		assertEquals(imovel.getDescricao(), "");
-		
+
 		imovel.setDescricao(null);
 		assertEquals(imovel.getDescricao(), null);
 
 	}
-	
-	
 
 }
