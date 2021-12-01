@@ -6,9 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Imoveis")
+@Builder(toBuilder = true)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Imovel {
 
 	@Id
@@ -33,13 +41,13 @@ public class Imovel {
 
 	@Column(nullable = false, name = "Cep")
 	private String cep;
-	
+
 	@Column(nullable = false, name = "Cidade")
 	private String cidade;
-	
+
 	@Column(nullable = false, name = "Bairro")
 	private String bairro;
-	
+
 	@Column(nullable = false, name = "Uf")
 	private String uf;
 
@@ -55,15 +63,13 @@ public class Imovel {
 	public Imovel() {
 	}
 
-	
-
 	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
 			Double valorDaDiaria, Long telefoneProprietario, String cep, String cidade, String bairro, String uf,
 			String rua, int numero, String complemento) {
 		super();
 		this.arCondicionado = arCondicionado;
 		this.setCamaSolteiro(camaSolteiro);
-		this.setCamaCasal(camaCasal); 
+		this.setCamaCasal(camaCasal);
 		this.setQuartos(quartos);
 		this.descricao = descricao;
 		this.valorDaDiaria = valorDaDiaria;
@@ -76,8 +82,6 @@ public class Imovel {
 		this.setNumero(numero);
 		this.complemento = complemento;
 	}
-
-
 
 	public Imovel(Boolean arCondicionado, Integer camaSolteiro, Integer camaCasal, Integer quartos, String descricao,
 			String imagemURL, Double valorDaDiaria, Long telefoneProprietario, String cep, String cidade, String bairro,
@@ -99,164 +103,35 @@ public class Imovel {
 		this.numero = numero;
 		this.complemento = complemento;
 	}
+	
 
-
-
-	public Boolean getArCondicionado() {
-		return arCondicionado;
-	}
-
-	public void setArCondicionado(Boolean arCondicionado) {
-		this.arCondicionado = arCondicionado;
-	}
-
-	public Integer getCamaSolteiro() {
-		return camaSolteiro;
+	private void setNumero(int numero2) {
+		this.numero = numero2;
+		
 	}
 
 	public void setCamaSolteiro(Integer camaSolteiro) {
-		
-		this.camaSolteiro =	camaSolteiro < 0  ? 0 : camaSolteiro;
-		
-	}
 
-	public Integer getCamaCasal() {
-		return camaCasal;
+		this.camaSolteiro = camaSolteiro < 0 ? 0 : camaSolteiro;
+
 	}
 
 	public void setCamaCasal(Integer camaCasal) {
-		this.camaCasal = (camaCasal > 0  ) ? camaCasal : 0;
-		
-	}
+		this.camaCasal = (camaCasal > 0) ? camaCasal : 0;
 
-	public Integer getQuartos() {
-		return quartos;
 	}
 
 	public void setQuartos(Integer quartos) {
-		
+
 		this.quartos = quartos < 0 ? 0 : quartos;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Long getTelefoneProprietario() {
-		return telefoneProprietario;
-	}
-
-	public void setTelefoneProprietario(Long telefoneProprietario) {
-		this.telefoneProprietario = telefoneProprietario;
-	}
-
-	public String getImagemURL() {
-		return imagemURL;
-	}
-
-	public void setImagemURL(String imagemURL) {
-		this.imagemURL = imagemURL;
-	}
-
-	public Double getValorDaDiaria() {
-		return valorDaDiaria;
 	}
 
 	public void setValorDaDiaria(Double valorDaDiaria) {
 		this.valorDaDiaria = valorDaDiaria;
 	}
 
-
-	public String getCep() {
-		return cep;
-	}
-
-
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-
-
-	public String getCidade() {
-		return cidade;
-	}
-
-
-
 	public void setCidade(String cidade) {
 		this.cidade = "Porto Alegre";
-	}
-
-
-
-	public String getBairro() {
-		return bairro;
-	}
-
-
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-
-
-	public String getUf() {
-		return uf;
-	}
-
-
-
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
-
-
-	public String getRua() {
-		return rua;
-	}
-
-
-
-	public void setRua(String rua) {
-		this.rua = rua;
-	}
-
-
-
-	public int getNumero() {
-		return numero;
-	}
-
-
-
-	public void setNumero(int numero) {
-		this.numero = numero < 1 ? 0 : numero;
-	}
-
-
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-
-
-	public Long getId() {
-		return id;
 	}
 
 }
